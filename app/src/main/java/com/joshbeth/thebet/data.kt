@@ -8,7 +8,8 @@ enum class Screen {
     PLAYER_DESIGNATION,
     REWARD_PUNISHMENT_CHOICE,
     STORY_SELECTION,
-    STORY_SCREEN
+    STORY_SCREEN,
+    STORY_PLAYER // New screen for the act player
 }
 
 // To manage the app's visual theme
@@ -21,12 +22,13 @@ enum class ThemeSelection {
 @Serializable
 data class StoryUiState(
     val currentScreen: Screen = Screen.PLAYER_DESIGNATION,
-    val theme: ThemeSelection = ThemeSelection.NEUTRAL, // New theme state
+    val theme: ThemeSelection = ThemeSelection.NEUTRAL,
     val winnerName: String = "",
     val loserName: String = "",
     val chosenPath: String? = null, // "Reward" or "Punishment"
     val selectedStory: StoryScript? = null,
-    val drawnCommands: Map<Int, StoryCommand?> = emptyMap()
+    val drawnCommands: Map<Int, StoryCommand?> = emptyMap(),
+    val actToPlay: List<StoryStep>? = null // The act currently being played
 )
 
 @Serializable

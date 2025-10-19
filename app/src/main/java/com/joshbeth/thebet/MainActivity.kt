@@ -3,6 +3,8 @@ package com.joshbeth.thebet
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,24 +17,34 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -49,6 +61,7 @@ import com.joshbeth.thebet.ui.theme.NeutralGrayDark
 import com.joshbeth.thebet.ui.theme.NeutralGrayMedium
 import com.joshbeth.thebet.ui.theme.SexyPeach
 import com.joshbeth.thebet.ui.theme.SexyPink
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -86,13 +99,48 @@ class StoryViewModel : ViewModel() {
     }
 
     fun startStory(story: StoryScript) {
-        val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
         val drawnCommands = mutableMapOf<Int, StoryCommand?>()
-        allSteps.forEachIndexed { index, step ->
-            if (step is DrawCommand) {
-                // This part requires CommandRepository, which is not provided.
-                // Assuming it's defined elsewhere.
-                // drawnCommands[index] = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
+        val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
+
+        // Define the acts and their starting global indices
+        val actsAndOffsets = listOf(
+            story.act1Setup to 0,
+            story.act2Core to story.act1Setup.size,
+            story.act3Aftermath to story.act1Setup.size + story.act2Core.size,
+            (story.aftercareScript ?: emptyList()) to story.act1Setup.size + story.act2Core.size + story.act3Aftermath.size
+        )
+
+        for ((act, offset) in actsAndOffsets) {
+            // Track commands used within this single act to avoid duplicates
+            val usedInThisAct = mutableSetOf<StoryCommand>()
+            
+            act.forEachIndexed { actIndex, step ->
+                if (step is DrawCommand) {
+                    val globalIndex = offset + actIndex
+                    var drawnCommand: StoryCommand? = null
+                    var attempts = 0
+                    val maxAttempts = 10 // To prevent potential infinite loops
+
+                    // Try to get a command that hasn't been used in this act yet
+                    do {
+                        val potentialCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
+                        if (potentialCommand != null && !usedInThisAct.contains(potentialCommand)) {
+                            drawnCommand = potentialCommand
+                        }
+                        attempts++
+                    } while (drawnCommand == null && attempts < maxAttempts)
+
+                    // If after several attempts we still don't have a unique one (e.g., small command pool),
+                    // just get a random one and accept it might be a duplicate.
+                    if (drawnCommand == null) {
+                        drawnCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
+                    }
+
+                    if (drawnCommand != null) {
+                        usedInThisAct.add(drawnCommand) // Add to the set for this act
+                        drawnCommands[globalIndex] = drawnCommand // Add to the main map
+                    }
+                }
             }
         }
 
@@ -101,6 +149,24 @@ class StoryViewModel : ViewModel() {
                 selectedStory = story,
                 currentScreen = Screen.STORY_SCREEN,
                 drawnCommands = drawnCommands
+            )
+        }
+    }
+
+    fun playAct(act: List<StoryStep>) {
+        _uiState.update {
+            it.copy(
+                actToPlay = act,
+                currentScreen = Screen.STORY_PLAYER
+            )
+        }
+    }
+
+    fun finishAct() {
+        _uiState.update {
+            it.copy(
+                actToPlay = null,
+                currentScreen = Screen.STORY_SCREEN
             )
         }
     }
@@ -164,10 +230,12 @@ fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
             )
             Screen.STORY_SELECTION -> StorySelectionScreen(
                 winnerName = uiState.winnerName,
+                loserName = uiState.loserName,
                 path = uiState.chosenPath ?: "",
                 onStorySelected = { story -> viewModel.startStory(story) }
             )
-            Screen.STORY_SCREEN -> StoryScreen(uiState = uiState, onBack = { viewModel.goBackToStart() })
+            Screen.STORY_SCREEN -> StoryScreen(uiState = uiState, onPlayAct = { act -> viewModel.playAct(act) }, onBack = { viewModel.goBackToStart() })
+            Screen.STORY_PLAYER -> StoryPlayerScreen(uiState = uiState, onFinish = { viewModel.finishAct() })
         }
     }
 }
@@ -235,7 +303,7 @@ fun RewardPunishmentChoiceScreen(winnerName: String, onChoiceSelected: (String) 
 
 
 @Composable
-fun StorySelectionScreen(winnerName: String, path: String, onStorySelected: (StoryScript) -> Unit) {
+fun StorySelectionScreen(winnerName: String, loserName: String, path: String, onStorySelected: (StoryScript) -> Unit) {
     val dominantGender = if (winnerName.equals("Josh", ignoreCase = true)) "Male" else "Female"
     val stories = StoryRepository.getAllStories().filter {
         it.type.equals(path, ignoreCase = true) && (it.dominantGender == null || it.dominantGender.equals(dominantGender, ignoreCase = true))
@@ -267,7 +335,9 @@ fun StorySelectionScreen(winnerName: String, path: String, onStorySelected: (Sto
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        val conceptText = story.concept.replace("{winner}", winnerName, ignoreCase = true)
+                        val conceptText = story.concept
+                            .replace("{winner}", winnerName, ignoreCase = true)
+                            .replace("{loser}", loserName, ignoreCase = true)
                         Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
@@ -279,7 +349,7 @@ fun StorySelectionScreen(winnerName: String, path: String, onStorySelected: (Sto
 }
 
 @Composable
-fun StoryScreen(uiState: StoryUiState, onBack: () -> Unit) {
+fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onBack: () -> Unit) {
     val story = uiState.selectedStory ?: return
     val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
 
@@ -299,10 +369,22 @@ fun StoryScreen(uiState: StoryUiState, onBack: () -> Unit) {
                         .padding(vertical = 8.dp),
                     shape = RoundedCornerShape(16.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.5f)) // Make card darker for better contrast
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        Text(title, style = MaterialTheme.typography.headlineMedium, color = MaterialTheme.colorScheme.primary)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(title, style = MaterialTheme.typography.headlineMedium, color = MaterialTheme.colorScheme.primary)
+                            Button(
+                                onClick = { onPlayAct(actContent) },
+                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+                            ) {
+                                Icon(Icons.Default.PlayArrow, contentDescription = "Play Act", tint = MaterialTheme.colorScheme.onSecondary)
+                            }
+                        }
                         HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.secondary)
 
                         actContent.forEach { step ->
@@ -335,13 +417,47 @@ fun StoryScreen(uiState: StoryUiState, onBack: () -> Unit) {
                                     is DrawCommand -> {
                                         val command = uiState.drawnCommands[stepIndex]
                                         if (command != null) {
-                                            val commandText = command.text.replace("{winner}", uiState.winnerName, true).replace("{loser}", uiState.loserName, true)
-                                            Text(
-                                                text = commandText,
-                                                fontWeight = FontWeight.Bold,
-                                                color = MaterialTheme.colorScheme.primary,
-                                                style = MaterialTheme.typography.bodyLarge
-                                            )
+                                            val rawText = command.text
+                                            val lastBracketContent = rawText.substringAfterLast('[', "").substringBeforeLast(']', "")
+
+                                            val parsedSpeaker: String
+                                            val parsedDialogue: String
+                                            if (lastBracketContent.contains(':')) {
+                                                val parts = lastBracketContent.split(":", limit = 2)
+                                                parsedSpeaker = parts[0].trim()
+                                                parsedDialogue = parts[1].trim().trim('\'')
+                                            } else {
+                                                parsedSpeaker = uiState.winnerName
+                                                parsedDialogue = rawText.trim('[', ']')
+                                            }
+
+                                            val commandText = parsedDialogue.replace("{winner}", uiState.winnerName, true).replace("{loser}", uiState.loserName, true)
+                                            val speakerToDisplay = when (parsedSpeaker.uppercase()) {
+                                                "WINNER" -> uiState.winnerName
+                                                "LOSER" -> uiState.loserName
+                                                else -> parsedSpeaker
+                                            }
+                                            val dialogueColor = when (speakerToDisplay.uppercase()) {
+                                                "BETH" -> SexyPink
+                                                "JOSH" -> DominantBlue
+                                                "NARRATOR" -> DialogueGreen
+                                                else -> MaterialTheme.colorScheme.onSurface
+                                            }
+
+                                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                                Icon(
+                                                    imageVector = Icons.Filled.Star,
+                                                    contentDescription = "Draw Command",
+                                                    tint = MaterialTheme.colorScheme.secondary,
+                                                    modifier = Modifier.size(16.dp)
+                                                )
+                                                Spacer(Modifier.width(8.dp))
+                                                Text(
+                                                    text = "$speakerToDisplay: $commandText",
+                                                    style = MaterialTheme.typography.bodyLarge,
+                                                    color = dialogueColor
+                                                )
+                                            }
                                         }
                                     }
                                 }
@@ -359,6 +475,147 @@ fun StoryScreen(uiState: StoryUiState, onBack: () -> Unit) {
             shape = RoundedCornerShape(12.dp)
         ) {
             Text("Back to Start", color = MaterialTheme.colorScheme.onSecondary)
+        }
+    }
+}
+
+@Composable
+fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
+    val act = uiState.actToPlay ?: return
+    val story = uiState.selectedStory ?: return
+    val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
+
+    val playableSteps = act.filter { it is DialogueLine || it is DrawCommand }
+
+    if (playableSteps.isEmpty()) {
+        LaunchedEffect(Unit) {
+            onFinish()
+        }
+        return
+    }
+
+    val alpha = remember { Animatable(0f) }
+    val currentLineIndex = remember { Animatable(0f) }
+
+    LaunchedEffect(playableSteps) {
+        alpha.animateTo(1f, animationSpec = tween(1000))
+
+        while (currentLineIndex.value.toInt() < playableSteps.size) {
+            val step = playableSteps[currentLineIndex.value.toInt()]
+            val displayTime = when (step) {
+                is DialogueLine -> (step.text.split(" ").size * 300L).coerceAtLeast(2000L)
+                is DrawCommand -> {
+                    val stepIndex = allSteps.indexOf(step)
+                    val command = uiState.drawnCommands[stepIndex]
+                    val rawText = command?.text ?: ""
+                    val lastBracketContent = rawText.substringAfterLast('[', "").substringBeforeLast(']', "")
+                    val dialogue = if (lastBracketContent.contains(':')) {
+                        lastBracketContent.split(":", limit = 2)[1].trim().trim('\'')
+                    } else {
+                        rawText.trim('[', ']')
+                    }
+                    (dialogue.split(" ").size * 300L).coerceAtLeast(2000L)
+                }
+                else -> 2000L
+            }
+            delay(displayTime)
+
+            alpha.animateTo(0f, animationSpec = tween(1000))
+            currentLineIndex.animateTo(currentLineIndex.value + 1, animationSpec = tween(0))
+
+            if (currentLineIndex.value.toInt() < playableSteps.size) {
+                alpha.animateTo(1f, animationSpec = tween(1000))
+            } else {
+                onFinish()
+            }
+        }
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        val currentIndex = currentLineIndex.value.toInt().coerceAtMost(playableSteps.size - 1)
+        val step = playableSteps[currentIndex]
+
+        when (step) {
+            is DialogueLine -> {
+                val textToDisplay = step.text.replace("{winner}", uiState.winnerName, true).replace("{loser}", uiState.loserName, true)
+                val speakerToDisplay = when (step.speaker.uppercase()) {
+                    "WINNER" -> uiState.winnerName
+                    "LOSER" -> uiState.loserName
+                    else -> step.speaker
+                }
+                val dialogueColor = when (speakerToDisplay.uppercase()) {
+                    "BETH" -> SexyPink
+                    "JOSH" -> DominantBlue
+                    "NARRATOR" -> DialogueGreen
+                    else -> MaterialTheme.colorScheme.onSurface
+                }
+                val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = 16f))
+
+                Text(
+                    text = "$speakerToDisplay: $textToDisplay",
+                    style = glowStyle,
+                    color = dialogueColor.copy(alpha = alpha.value),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.alpha(alpha.value)
+                )
+            }
+            is DrawCommand -> {
+                val stepIndex = allSteps.indexOf(step)
+                val command = uiState.drawnCommands[stepIndex]
+                if (command != null) {
+                    val rawText = command.text
+                    val lastBracketContent = rawText.substringAfterLast('[', "").substringBeforeLast(']', "")
+
+                    val parsedSpeaker: String
+                    val parsedDialogue: String
+                    if (lastBracketContent.contains(':')) {
+                        val parts = lastBracketContent.split(":", limit = 2)
+                        parsedSpeaker = parts[0].trim()
+                        parsedDialogue = parts[1].trim().trim('\'')
+                    } else {
+                        parsedSpeaker = uiState.winnerName
+                        parsedDialogue = rawText.trim('[', ']')
+                    }
+
+                    val commandText = parsedDialogue.replace("{winner}", uiState.winnerName, true).replace("{loser}", uiState.loserName, true)
+                    val speakerToDisplay = when (parsedSpeaker.uppercase()) {
+                        "WINNER" -> uiState.winnerName
+                        "LOSER" -> uiState.loserName
+                        else -> parsedSpeaker
+                    }
+                    val dialogueColor = when (speakerToDisplay.uppercase()) {
+                        "BETH" -> SexyPink
+                        "JOSH" -> DominantBlue
+                        "NARRATOR" -> DialogueGreen
+                        else -> MaterialTheme.colorScheme.onSurface
+                    }
+                    val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = 16f))
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.alpha(alpha.value)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Star,
+                            contentDescription = "Draw Command",
+                            tint = MaterialTheme.colorScheme.secondary.copy(alpha = alpha.value),
+                            modifier = Modifier.size(32.dp) // Larger star
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            text = "$speakerToDisplay: $commandText",
+                            style = glowStyle,
+                            color = dialogueColor.copy(alpha = alpha.value),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+            else -> { /* Do nothing for other step types */ }
         }
     }
 }
