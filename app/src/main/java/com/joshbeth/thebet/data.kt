@@ -11,14 +11,21 @@ enum class Screen {
     STORY_SCREEN
 }
 
+// To manage the app's visual theme
+enum class ThemeSelection {
+    NEUTRAL,
+    PUNISHMENT,
+    REWARD
+}
+
 @Serializable
 data class StoryUiState(
     val currentScreen: Screen = Screen.PLAYER_DESIGNATION,
+    val theme: ThemeSelection = ThemeSelection.NEUTRAL, // New theme state
     val winnerName: String = "",
     val loserName: String = "",
     val chosenPath: String? = null, // "Reward" or "Punishment"
     val selectedStory: StoryScript? = null,
-    // This map will hold the results of all drawn commands for the story
     val drawnCommands: Map<Int, StoryCommand?> = emptyMap()
 )
 

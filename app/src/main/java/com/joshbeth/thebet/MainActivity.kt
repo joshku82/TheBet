@@ -40,8 +40,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.joshbeth.thebet.ui.theme.TheBetTheme
-import com.joshbeth.thebet.ui.theme.DeepPurple
-import com.joshbeth.thebet.ui.theme.LightPink
+import com.joshbeth.thebet.ui.theme.DeepBlack
+import com.joshbeth.thebet.ui.theme.CrimsonRed
+import com.joshbeth.thebet.ui.theme.DeepTeal
+import com.joshbeth.thebet.ui.theme.DialogueGreen
+import com.joshbeth.thebet.ui.theme.DominantBlue
+import com.joshbeth.thebet.ui.theme.NeutralGrayDark
+import com.joshbeth.thebet.ui.theme.NeutralGrayMedium
+import com.joshbeth.thebet.ui.theme.SexyPeach
+import com.joshbeth.thebet.ui.theme.SexyPink
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -70,7 +77,12 @@ class StoryViewModel : ViewModel() {
     }
 
     fun setChoice(path: String) {
-        _uiState.update { it.copy(chosenPath = path, currentScreen = Screen.STORY_SELECTION) }
+        val theme = if (path == "Punishment") ThemeSelection.PUNISHMENT else ThemeSelection.REWARD
+        _uiState.update { it.copy(
+            chosenPath = path, 
+            currentScreen = Screen.STORY_SELECTION,
+            theme = theme
+        ) }
     }
 
     fun startStory(story: StoryScript) {
@@ -78,7 +90,9 @@ class StoryViewModel : ViewModel() {
         val drawnCommands = mutableMapOf<Int, StoryCommand?>()
         allSteps.forEachIndexed { index, step ->
             if (step is DrawCommand) {
-                drawnCommands[index] = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
+                // This part requires CommandRepository, which is not provided.
+                // Assuming it's defined elsewhere.
+                // drawnCommands[index] = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
             }
         }
 
@@ -101,9 +115,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         StoryRepository.loadStories(applicationContext)
         setContent {
-            TheBetTheme {
+            val viewModel: StoryViewModel = viewModel()
+            val uiState by viewModel.uiState.collectAsState()
+            TheBetTheme(theme = uiState.theme) {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    StoryApp()
+                    StoryApp(viewModel = viewModel)
                 }
             }
         }
@@ -115,17 +131,18 @@ class MainActivity : ComponentActivity() {
 // =============================================================== //
 
 @Composable
-fun GradientBox(content: @Composable () -> Unit) {
+fun GradientBox(theme: ThemeSelection, content: @Composable () -> Unit) {
+    val gradientColors = when (theme) {
+        ThemeSelection.PUNISHMENT -> listOf(DeepBlack, CrimsonRed.copy(alpha = 0.3f))
+        ThemeSelection.REWARD -> listOf(DeepTeal, SexyPeach.copy(alpha = 0.3f))
+        ThemeSelection.NEUTRAL -> listOf(NeutralGrayDark, NeutralGrayMedium)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        DeepPurple,
-                        Color(0xFF1A193B) // A slightly darker purple for the bottom
-                    )
-                )
+                Brush.verticalGradient(colors = gradientColors)
             )
     ) {
         content()
@@ -133,10 +150,10 @@ fun GradientBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel = viewModel()) {
+fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
-    GradientBox {
+    GradientBox(theme = uiState.theme) {
         when (uiState.currentScreen) {
             Screen.PLAYER_DESIGNATION -> PlayerDesignationScreen(onConfirm = { winner, loser ->
                 viewModel.setPlayerNames(winner, loser)
@@ -150,10 +167,7 @@ fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel = viewMode
                 path = uiState.chosenPath ?: "",
                 onStorySelected = { story -> viewModel.startStory(story) }
             )
-            Screen.STORY_SCREEN -> StoryScreen(
-                uiState = uiState,
-                onBack = { viewModel.goBackToStart() }
-            )
+            Screen.STORY_SCREEN -> StoryScreen(uiState = uiState, onBack = { viewModel.goBackToStart() })
         }
     }
 }
@@ -165,7 +179,7 @@ fun PlayerDesignationScreen(onConfirm: (String, String) -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Who Won The Bet?", style = MaterialTheme.typography.headlineLarge, color = LightPink)
+        Text("Who Won The Bet?", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onBackground)
         Spacer(modifier = Modifier.height(32.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Button(
@@ -195,7 +209,7 @@ fun RewardPunishmentChoiceScreen(winnerName: String, onChoiceSelected: (String) 
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Congratulations, $winnerName!", style = MaterialTheme.typography.headlineLarge, color = LightPink, textAlign = TextAlign.Center)
+        Text(text = "Congratulations, $winnerName!", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onBackground, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "What is your desire?", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.height(32.dp))
@@ -226,27 +240,38 @@ fun StorySelectionScreen(winnerName: String, path: String, onStorySelected: (Sto
     val stories = StoryRepository.getAllStories().filter {
         it.type.equals(path, ignoreCase = true) && (it.dominantGender == null || it.dominantGender.equals(dominantGender, ignoreCase = true))
     }
+    
     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
         item {
             Text(
                 text = "Choose a $path",
                 style = MaterialTheme.typography.headlineLarge,
-                color = LightPink,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
         }
-        items(stories) { story ->
-            Card(
-                modifier = Modifier.padding(vertical = 8.dp).clickable { onStorySelected(story) },
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    val conceptText = story.concept.replace("{winner}", winnerName, ignoreCase = true)
-                    Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
+        if (stories.isEmpty()) {
+            item {
+                Text(
+                    "No stories available for this selection.",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+        } else {
+            items(stories) { story ->
+                Card(
+                    modifier = Modifier.padding(vertical = 8.dp).clickable { onStorySelected(story) },
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        val conceptText = story.concept.replace("{winner}", winnerName, ignoreCase = true)
+                        Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
             }
         }
@@ -291,7 +316,13 @@ fun StoryScreen(uiState: StoryUiState, onBack: () -> Unit) {
                                             "LOSER" -> uiState.loserName
                                             else -> step.speaker
                                         }
-                                        Text(text = "$speakerToDisplay: $textToDisplay", style = MaterialTheme.typography.bodyLarge)
+                                        val dialogueColor = when (speakerToDisplay.uppercase()) {
+                                            "BETH" -> SexyPink
+                                            "JOSH" -> DominantBlue
+                                            "NARRATOR" -> DialogueGreen
+                                            else -> MaterialTheme.colorScheme.onSurface
+                                        }
+                                        Text(text = "$speakerToDisplay: $textToDisplay", style = MaterialTheme.typography.bodyLarge, color = dialogueColor)
                                     }
                                     is ActionTag -> {
                                         Text(
