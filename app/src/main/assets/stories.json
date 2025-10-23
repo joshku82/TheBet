@@ -664,14 +664,24 @@
     "concept": "A gangbang roleplay where Beth, as the victorious Queen, commands you (Josh), her loyal eunuch, to service her and facilitate her pleasure with her 'harem' of dildos.",
     "commandLibrary": {
       "instruction": [
-        { "text": "[regal] [BETH: 'My harem arrives soon. Make sure your Queen is ready for them.']" },
-        { "text": "[regal] [BETH: 'Your only purpose is to be the hands of my pleasure. Do not fail me.']" },
-        { "text": "[regal] [BETH: 'More. I want to be dripping for them when they arrive.']" },
-        { "text": "[regal] [BETH: 'Bring me my first stud. I am ready.']" },
-        { "text": "[regal] [BETH: 'Work them both. Show me how well you can serve your Queen.']" },
-        { "text": "[regal] [BETH: 'Faster. I want to feel myself being fucked by my entire harem at once.']" },
-        { "text": "[impatiently] [BETH: 'Are you deaf, eunuch? I said to bring me my next lover.']" },
-        { "text": "[regal] [BETH: 'Prepare the toys, all of them. I want my harem assembled and ready for inspection.']" }
+        { "text": "[evaluating] [BETH: 'Hmm... adequate, eunuch, but your Queen requires perfection. More pressure.']" },
+        { "text": "[impatiently] [BETH: 'Is that truly the best your tongue can do? My harem studs offer more vigor. Try again.']" },
+        { "text": "[pleased] [BETH: 'Ah, yes... there. You've found the spot. Focus your worship there, precisely.']" },
+        { "text": "[demanding] [BETH: 'Faster now. Your Queen grows eager. Make me ready for my guests.']" },
+        { "text": "[satisfied] [BETH: 'Your tongue shows promise... bury it deep within my cunt. That's it... now worship all of me with that tongue. Leave no part ignored.']" },
+        { "text": "[commanding] [BETH: 'Now attend to my clit directly. It requires your absolute devotion before the others arrive.']" },
+        { "text": "[breathless] [BETH: 'Yes... you have almost prepared the royal passage. Just a little more...']" },
+        { "text": "[regal] [BETH: 'Enough. Your service is... acceptable. You have made your Queen ready. Now, bring me my first stud.']" }
+      ],
+      "instructiona": [
+        { "text": "[shouts] [BETH: 'Faster, eunuch! Drive them harder! Push your Queen over the edge!']" },
+        { "text": "[demanding] [BETH: 'Deeper! I need to feel them grinding inside me! Make me cum now!']" },
+        { "text": "[gasping] [BETH: 'Yes! Just like that! Don't stop! Only the toys! Bring me my release!']" },
+        { "text": "[breathless] [BETH: 'I'm so close! Keep that rhythm perfect! Make your Queen shatter!']" },
+        { "text": "[commanding] [BETH: 'Harder and faster now! Use those cocks like you were born for it! Give me everything!']" },
+        { "text": "[impressed] [BETH: 'Such skill with my toys! Now prove your ultimate worth! Finish me!']" },
+        { "text": "[imperious] [BETH: 'I am on the precipice! Your final task is simple: MAKE. ME. CUM.']" },
+        { "text": "[overwhelmed] [BETH: 'Don't slow down! Drown me in pleasure! Make the orgasm take me!']" }
       ],
       "humiliation": [
         { "text": "[dismissive] [BETH: 'Look at you, my pathetic little eunuch, preparing me for real cocks.']" },
@@ -684,14 +694,14 @@
         { "text": "[dismissive] [BETH: 'While I get fucked by my harem, you will be locked in chastity. A true eunuch.']" }
       ],
       "praise": [
-        { "text": "[pleased] [BETH: 'Mmm, yes. You are a well-trained servant.']" },
-        { "text": "[pleased] [BETH: 'Good boy. You know exactly how to please your Queen before her guests arrive.']" },
-        { "text": "[pleased] [BETH: 'Your service is... adequate. You may be rewarded by cleaning up the mess later.']" },
-        { "text": "[pleased] [BETH: 'Look how you make me feel. You are a useful tool for my pleasure.']" },
-        { "text": "[pleased] [BETH: 'For a lowly eunuch, your tongue is surprisingly skilled.']" },
-        { "text": "[pleased] [BETH: 'You handle my harem so well. Such a good manager of my cocks.']" },
-        { "text": "[pleased] [BETH: 'You gave me a wonderful orgasm. The harem is pleased.']" },
-        { "text": "[pleased] [BETH: 'Your absolute devotion to my pleasure is your most redeeming quality.']" }
+        { "text": "[pleased] [BETH: 'Mmm, yes... skillfully handling both my studs. You are a well-trained servant.']" },
+        { "text": "[impressed] [BETH: 'Two cocks at once... you manage my harem beautifully, eunuch. Keep that rhythm.']" },
+        { "text": "[satisfied] [BETH: 'Your service managing these toys is... surprisingly adequate. Perhaps you're not entirely useless.']" },
+        { "text": "[gasping] [BETH: 'Look how full you make me feel with both! You are indeed a useful tool for wielding my pleasure.']" },
+        { "text": "[satisfied] [BETH: 'Yes... using both hands, coordinating their thrusts... you truly are the hands of my pleasure tonight.']" },
+        { "text": "[pleased] [BETH: 'You handle my chosen cocks so well together. Such a good manager for your Queen.']" },
+        { "text": "[breathless] [BETH: 'Feeling both studs inside me... ahh, you orchestrate my pleasure perfectly. Don't stop.']" },
+        { "text": "[pleased] [BETH: 'Your absolute devotion to fulfilling my desires, even with these toys, is commendable. Keep going.']" }
       ],
       "actionsSubOnDomMouthOnPussy": [
         { "text": "[NARRATOR: 'Lick her clit in slow, lazy circles until she starts to squirm in anticipation.']" },
@@ -704,62 +714,100 @@
         { "text": "[NARRATOR: 'Gently blow air onto her wet clit after licking it, sending shivers through her.']" }
       ],
       "toy_use": {
-        "on_female_sub": [
-          { "text": "[regal] [BETH: 'Bring me my first guest, The Average Size Dick. Let's start slow.']" },
-          { "text": "[regal] [BETH: 'Now it is time for The Big Cock. I want to feel him stretch me for the others.']" },
-          { "text": "[regal] [BETH: 'The Big Unicorn has arrived. Make him fuck me while you use your mouth on me.']" },
-          { "text": "[regal] [BETH: 'Release the hound. I want The K9's knot popping inside me now.']" },
-          { "text": "[regal] [BETH: 'Bring forth the champion of the harem, The Monster Dick. He will be my final lover.']" },
-          { "text": "[regal] [BETH: 'The Tiny Unicorn will attend to my clit while the others fill my cunt.']" },
-          { "text": "[regal] [BETH: 'The Small Purple Butt Plug will guard my backdoor while the harem uses the front.']" },
-          { "text": "[regal] [BETH: 'Now for the main event. Slide The Knot Sleeve over The Big Cock. My true king has arrived.']" }
-        ]
-      },
-      "kinkActions": {
-        "for_her": [
-          { "text": "[NARRATOR: 'Use two dildos to double-stuff her pussy until she is overwhelmed by her harem.']" },
-          { "text": "[NARRATOR: 'Stuff one hole with a dildo while you use your mouth on her clit.']" },
-          { "text": "[NARRATOR: 'Force her to choose which two 'lovers' she wants inside her at the same time.']" },
-          { "text": "[NARRATOR: 'Make her hold the dildos inside her with her own muscles while you praise her strength.']" },
-          { "text": "[NARRATOR: 'Create a 'spit roast' by using one dildo in her cunt and another in your hand for her to suck.']" },
-          { "text": "[NARRATOR: 'Use the dildos to bring her to the edge, then stop and switch to a different 'lover'.']" },
-          { "text": "[NARRATOR: 'Arrange all the toys around her on the bed, creating the visual of a full harem waiting to serve her.']" },
-          { "text": "[NARRATOR: 'Have her suck on one dildo while you use another on her, forcing her to pleasure her own 'harem'.']" }
+        "first_toy": [
+          { "text": "[regal] [BETH: 'Bring me my most reliable stud, The Average Size Dick. He shall be the first to enter my royal cunt and prepare me for the others.']" },
+          { "text": "[demanding] [BETH: 'Enough waiting! It is time for a true challenge. Bring forth The Big Cock and stretch my pussy open first.']" },
+          { "text": "[dreamy] [BETH: 'My fantasy awaits. Let us begin with The Big Unicorn; fuck my pussy with him first. I want to feel his magical horn deep inside me.']" },
+          { "text": "[primal] [BETH: 'I desire a more animalistic opening. Bring The K9. Use him on my cunt first, and don't stop until you feel his knot pop.']" },
+          { "text": "[imperious] [BETH: 'Let the champion begin the festivities! My royal pussy will conquer The Monster Dick first tonight.']" },
+          { "text": "[playful] [BETH: 'Attend to my royal jewel first. Use The Tiny Unicorn on my clit to announce the arrival of the studs.']" },
+          { "text": "[commanding] [BETH: 'My cunt feels empty. We shall begin simply. Plug it with the Small Purple Butt Plug first.']" },
+          { "text": "[authoritative] [BETH: 'My favorite stud needs his crown to make his entrance. Slide The Knot Sleeve over him and let me be the first to feel that royal knot filling my cunt.']" },
+          { "text": "[condescending] [BETH: 'Perhaps we should start with something... familiar before the real harem arrives. Eunuch, present your flesh. You may have the first honor.']" },
+          { "text": "[dismissive] [BETH: 'Before he enters my kingdom below, he must pay tribute above. Make me suck The Average Size Dick.']" },
+          { "text": "[impatiently] [BETH: 'My mouth is bored while you work. Punish it with The Big Cock.']" },
+          { "text": "[curious] [BETH: 'I want to taste a fantasy. Force The Big Unicorn's horn down my throat while you ready the next guest.']" },
+          { "text": "[demanding] [BETH: 'Make my mouth take The K9. I want to feel that animal knot against the back of my throat.']" },
+          { "text": "[regal] [BETH: 'Only the Queen's throat is worthy of The Monster Dick. Show him his place while you use another toy on me.']" },
+          { "text": "[teasing] [BETH: 'My lips desire a small treat while the main course is served. Let me suckle on The Tiny Unicorn.']" },
+          { "text": "[mocking] [BETH: 'Your mouth looks empty. Put the Small Purple Butt Plug in it.']" },
+          { "text": "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker. I want to feel its texture on my tongue while you fuck me.']" },
+          { "text": "[amused] [BETH: 'I grow tired of these lifeless toys. Present your own pathetic little stud. My royal mouth will pass judgment on it.']" },
+          { "text": "[commanding] [BETH: 'My back door requires a guest. Use The Average Size Dick to fill my ass while my cunt receives another.']" },
+          { "text": "[challenging] [BETH: 'My royal ass demands a true test. Stretch it open for me with The Big Cock.']" },
+          { "text": "[lustful] [BETH: 'I want a fantasy in both holes. Prepare my ass with The Big Unicorn's horn.']" },
+          { "text": "[primal] [BETH: 'My ass will claim the beast tonight. Make me take The K9's knot while you service my pussy.']" },
+          { "text": "[imperious] [BETH: 'The champion of the harem will conquer all my lands. My ass will now host The Monster Dick.']" },
+          { "text": "[playful] [BETH: 'A small guest for a tight space. Tease my asshole with The Tiny Unicorn while the main party is up front.']" },
+          { "text": "[authoritative] [BETH: 'Guard my back gate. You will plug my ass with the Small Purple Butt Plug before the primary fucking begins.']" },
+          { "text": "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass. I want to feel every ridge of that knot stretching me.']" },
+          { "text": "[dismissive] [BETH: 'My royal cunt is for the harem. Your flesh is only worthy of the servant's entrance. You may have the honor of fucking my ass.']" }
+        ],
+        "second_toy": [
+          { "text": "[regal] [BETH: 'Good. Now add my reliable stud, The Average Size Dick alongside him. Double-stuff your Queen.']" },
+          { "text": "[demanding] [BETH: 'I require more. Add The Big Cock next to the first. Stretch me completely.']" },
+          { "text": "[dreamy] [BETH: 'Bring in the second part of the fantasy. Add The Big Unicorn beside him; I want to feel both deep inside me.']" },
+          { "text": "[primal] [BETH: 'One beast is not enough. Add The K9 to my cunt now. Make me feel both knots simultaneously!']" },
+          { "text": "[imperious] [BETH: 'The champion joins the fray! Add The Monster Dick. My royal pussy will conquer them both!']" },
+          { "text": "[playful] [BETH: 'While he fills me, attend to my royal jewel as well. Add The Tiny Unicorn to my clit.']" },
+          { "text": "[commanding] [BETH: 'There is still space within my passage. Add the Small Purple Butt Plug alongside the first toy.']" },
+          { "text": "[condescending] [BETH: 'The first stud is lonely. Perhaps your flesh can join him now. Add your pathetic little cock.']" },
+          { "text": "[authoritative] [BETH: 'He needs his crown too. Slide The Knot Sleeve over the second stud and push him in beside the first. Make me feel both royal knots.']" },
+          { "text": "[dismissive] [BETH: 'While he works below, pay tribute above. Make me suck The Average Size Dick as well.']" },
+          { "text": "[impatiently] [BETH: 'My mouth grows idle. Punish it with The Big Cock while the first toy keeps fucking me.']" },
+          { "text": "[curious] [BETH: 'Let me taste the fantasy too. Force The Big Unicorn's horn down my throat while the other stud works.']" },
+          { "text": "[demanding] [BETH: 'My throat feels empty. Make my mouth take The K9 now. I want to feel that knot while I'm being filled.']" },
+          { "text": "[regal] [BETH: 'Only the Queen deserves such attention. While he fucks me, make my throat accept The Monster Dick.']" },
+          { "text": "[teasing] [BETH: 'My lips require amusement. Let me suckle on The Tiny Unicorn while he pounds away inside me.']" },
+          { "text": "[mocking] [BETH: 'Your mouth looks empty while your hands are busy. Put the Small Purple Butt Plug in it to keep it occupied.']" },
+          { "text": "[amused] [BETH: 'Distract me from this toy's efforts. Present your own pathetic little stud for my mouth's judgment.']" },
+          { "text": "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker on my tongue while the first toy continues its work inside me.']" },
+          { "text": "[commanding] [BETH: 'My back door feels neglected. Use The Average Size Dick to fill my ass while my cunt receives the first guest.']" },
+          { "text": "[challenging] [BETH: 'My royal ass demands attention too. Stretch it open for me with The Big Cock while the first toy fucks my pussy.']" },
+          { "text": "[lustful] [BETH: 'I desire fantasy in both holes. Stretch my ass with The Big Unicorn's horn while the first stud claims my cunt.']" },
+          { "text": "[primal] [BETH: 'My ass will claim the second beast. Make me take The K9's knot back there while you service my front.']" },
+          { "text": "[imperious] [BETH: 'The champion claims all lands. Add The Monster Dick to my ass while the first toy holds my cunt.']" },
+          { "text": "[playful] [BETH: 'A second guest for the tight space. Tease my asshole with The Tiny Unicorn while the main party continues up front.']" },
+          { "text": "[authoritative] [BETH: 'Guard my back gate while the front is occupied. Plug my ass with the Small Purple Butt Plug now.']" },
+          { "text": "[dismissive] [BETH: 'My royal cunt is claimed. Your flesh is only worthy of the servant's entrance now. Fuck my ass while the first stud uses my pussy.']" },
+          { "text": "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass simultaneously. I want to feel every ridge stretching me while the first toy works.']" }
         ]
       },
       "aftercare": {
         "physical": [
-          { "text": "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']" },
-          { "text": "[NARRATOR: 'Hold them close and stroke their hair.']" },
-          { "text": "[NARRATOR: 'Wrap them in a warm blanket.']" },
-          { "text": "[NARRATOR: 'Give them a gentle, loving massage.']" },
-          { "text": "[NARRATOR: 'Get them a glass of water.']" }
+          { "text": "[NARRATOR: 'She gently pulls you up from your kneeling position, guiding you onto the bed beside her.']" },
+          { "text": "[NARRATOR: 'She wraps her arms around you, holding you close in a warm, equal embrace, dropping all regal posture.']" },
+          { "text": "[NARRATOR: 'She softly kisses your forehead and cheeks, reassuring, non-sexual touch.']" },
+          { "text": "[NARRATOR: 'She gently takes your hand, intertwining her fingers with yours.']" },
+          { "text": "[NARRATOR: 'She strokes your back soothingly, letting you rest your head on her shoulder.']" }
         ],
         "verbal": [
-          { "text": "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']" },
-          { "text": "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']" },
-          { "text": "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']" },
-          { "text": "[sincere] [NARRATOR: 'I love you. You are safe with me.']" },
-          { "text": "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']" }
+          { "text": "[softly] [BETH: 'My Queen act is over, my love. You were absolutely incredible. Thank you for making that fantasy real for me.']" },
+          { "text": "[reassuringly] [BETH: 'You're not my eunuch, you're my amazing husband. Thank you for serving me so perfectly tonight.']" },
+          { "text": "[warmly] [BETH: 'It takes so much trust to do that for me, and I love you so much for it. You made me feel amazing.']" },
+          { "text": "[lovingly] [BETH: 'Come here. Let me hold my husband. You did everything right.']" },
+          { "text": "[sincerely] [BETH: 'That was intense and exactly what I wanted. Are you okay? Tell me how you're feeling.']" }
         ]
       }
     },
     "act1Setup": [
       { "type": "dialogue", "speaker": "NARRATOR", "text": "You lost the wager, and now you must serve your Queen. She takes her throne on the bed, propped by pillows. Your first task is to present the 'harem'. Her first command is simple:" },
       { "type": "action", "tag": "regal" },
-      { "type": "dialogue", "speaker": "BETH", "text": "Prepare your Queen." },
+      { "type": "dialogue", "speaker": "BETH", "text": "My royal passage must be readied for my guests. Attend to your Queen's pleasure first." },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "You must perform dedicated oral worship until she deems herself ready." },
       { "type": "draw", "from": "actionsSubOnDomMouthOnPussy" },
+      {"type": "action", "tag": "dismissive" },
+      { "type": "draw", "from": "humiliation" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Your service will be judged." },
       { "type": "action", "tag": "impatiently" },
       { "type": "draw", "from": "instruction" }
     ],
     "act2Core": [
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Once she is satisfied, she commands you to bring the first 'stud.' You will skillfully use it on her." },
-      { "type": "draw", "from": "toy_use.on_female_sub" },
+      { "type": "draw", "from": "toy_use.first_toy" },
       { "type": "action", "tag": "moans softly" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "After a few minutes, she will command you to bring the second, forcing you to manage two dildos at once." },
-      { "type": "draw", "from": "toy_use.on_female_sub" },
+      { "type": "draw", "from": "toy_use.second_toy" },
       { "type": "draw", "from": "kinkActions.for_her" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Your own pleasure is irrelevant. As you work, she will offer feedback." },
       { "type": "action", "tag": "pleased" },
@@ -769,7 +817,7 @@
     "act3Aftermath": [
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Your Queen will guide the intensity, commanding you faster and deeper until she is on the brink. Your final task is to give her a powerful, hands-free orgasm using only the toys." },
       { "type": "action", "tag": "shouts" },
-      { "type": "draw", "from": "instruction" },
+      { "type": "draw", "from": "instructiona" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "After her climax, her final command will determine your fate: she may command you to clean her and the toys with your mouth, or she may grant you a merciful, swift release." }
     ],
     "aftercareScript": [

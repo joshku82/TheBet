@@ -1,24 +1,29 @@
 package com.joshbeth.thebet
 
 import android.content.Context
-import kotlinx.serialization.json.Json
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 object StoryRepository {
 
     private val json = Json { ignoreUnknownKeys = true } // Lenient parser
 
+    @Volatile
     private var stories: List<StoryScript> = emptyList()
 
     /**
-     * Loads and parses stories from the assets/stories.json file.
-     * This should be called once, ideally from the Application class or a ViewModel init block.
+     * Loads and parses stories from the assets/stories.json file asynchronously.
+     * This should be called once, ideally from a coroutine scope.
      */
-    fun loadStories(context: Context) {
+    suspend fun loadStories(context: Context) {
         if (stories.isNotEmpty()) return // Avoid reloading
 
-        val jsonString = context.assets.open("stories.json").bufferedReader().use { it.readText() }
-        stories = json.decodeFromString(jsonString)
+        withContext(Dispatchers.IO) {
+            val jsonString = context.assets.open("stories.json").bufferedReader().use { it.readText() }
+            stories = json.decodeFromString(jsonString)
+        }
     }
 
     /**

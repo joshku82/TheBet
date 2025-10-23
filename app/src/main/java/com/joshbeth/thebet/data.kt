@@ -50,6 +50,7 @@ data class StoryScript(
 @Serializable
 data class CommandLibrary(
     val instruction: List<StoryCommand>? = null,
+    val instructiona: List<StoryCommand>? = null,
     val humiliation: List<StoryCommand>? = null,
     val praise: List<StoryCommand>? = null,
     val toy_use: Map<String, List<StoryCommand>>? = null,

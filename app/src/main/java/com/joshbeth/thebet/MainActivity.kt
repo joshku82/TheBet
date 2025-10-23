@@ -1,5 +1,7 @@
 package com.joshbeth.thebet
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -35,21 +37,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.joshbeth.thebet.ui.theme.TheBetTheme
 import com.joshbeth.thebet.ui.theme.DeepBlack
@@ -61,11 +68,13 @@ import com.joshbeth.thebet.ui.theme.NeutralGrayDark
 import com.joshbeth.thebet.ui.theme.NeutralGrayMedium
 import com.joshbeth.thebet.ui.theme.SexyPeach
 import com.joshbeth.thebet.ui.theme.SexyPink
+import java.io.IOException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 // =============================================================== //
 // VIEWMODEL
@@ -92,64 +101,46 @@ class StoryViewModel : ViewModel() {
     fun setChoice(path: String) {
         val theme = if (path == "Punishment") ThemeSelection.PUNISHMENT else ThemeSelection.REWARD
         _uiState.update { it.copy(
-            chosenPath = path, 
+            chosenPath = path,
             currentScreen = Screen.STORY_SELECTION,
             theme = theme
         ) }
     }
 
     fun startStory(story: StoryScript) {
-        val drawnCommands = mutableMapOf<Int, StoryCommand?>()
-        val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
+        viewModelScope.launch {
+            val drawnCommands = mutableMapOf<Int, StoryCommand?>()
+            val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
 
-        // Define the acts and their starting global indices
-        val actsAndOffsets = listOf(
-            story.act1Setup to 0,
-            story.act2Core to story.act1Setup.size,
-            story.act3Aftermath to story.act1Setup.size + story.act2Core.size,
-            (story.aftercareScript ?: emptyList()) to story.act1Setup.size + story.act2Core.size + story.act3Aftermath.size
-        )
+            val actsAndOffsets = listOf(
+                story.act1Setup to 0,
+                story.act2Core to story.act1Setup.size,
+                story.act3Aftermath to story.act1Setup.size + story.act2Core.size,
+                (story.aftercareScript ?: emptyList()) to story.act1Setup.size + story.act2Core.size + story.act3Aftermath.size
+            )
 
-        for ((act, offset) in actsAndOffsets) {
-            // Track commands used within this single act to avoid duplicates
-            val usedInThisAct = mutableSetOf<StoryCommand>()
-            
-            act.forEachIndexed { actIndex, step ->
-                if (step is DrawCommand) {
-                    val globalIndex = offset + actIndex
-                    var drawnCommand: StoryCommand? = null
-                    var attempts = 0
-                    val maxAttempts = 10 // To prevent potential infinite loops
+            for ((act, offset) in actsAndOffsets) {
+                val usedCommandsInAct = mutableSetOf<StoryCommand>()
+                act.forEachIndexed { actIndex, step ->
+                    if (step is DrawCommand) {
+                        val globalIndex = offset + actIndex
+                        val drawnCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary, usedCommandsInAct)
 
-                    // Try to get a command that hasn't been used in this act yet
-                    do {
-                        val potentialCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
-                        if (potentialCommand != null && !usedInThisAct.contains(potentialCommand)) {
-                            drawnCommand = potentialCommand
+                        if (drawnCommand != null) {
+                            usedCommandsInAct.add(drawnCommand)
+                            drawnCommands[globalIndex] = drawnCommand
                         }
-                        attempts++
-                    } while (drawnCommand == null && attempts < maxAttempts)
-
-                    // If after several attempts we still don't have a unique one (e.g., small command pool),
-                    // just get a random one and accept it might be a duplicate.
-                    if (drawnCommand == null) {
-                        drawnCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary)
-                    }
-
-                    if (drawnCommand != null) {
-                        usedInThisAct.add(drawnCommand) // Add to the set for this act
-                        drawnCommands[globalIndex] = drawnCommand // Add to the main map
                     }
                 }
             }
-        }
 
-        _uiState.update {
-            it.copy(
-                selectedStory = story,
-                currentScreen = Screen.STORY_SCREEN,
-                drawnCommands = drawnCommands
-            )
+            _uiState.update {
+                it.copy(
+                    selectedStory = story,
+                    currentScreen = Screen.STORY_SCREEN,
+                    drawnCommands = drawnCommands
+                )
+            }
         }
     }
 
@@ -179,10 +170,14 @@ class StoryViewModel : ViewModel() {
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StoryRepository.loadStories(applicationContext)
         setContent {
             val viewModel: StoryViewModel = viewModel()
             val uiState by viewModel.uiState.collectAsState()
+
+            LaunchedEffect(Unit) {
+                StoryRepository.loadStories(applicationContext)
+            }
+
             TheBetTheme(theme = uiState.theme) {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     StoryApp(viewModel = viewModel)
@@ -369,7 +364,7 @@ fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onB
                         .padding(vertical = 8.dp),
                     shape = RoundedCornerShape(16.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.5f)) // Make card darker for better contrast
+                    colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.5f))
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(
@@ -425,7 +420,7 @@ fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onB
                                             if (lastBracketContent.contains(':')) {
                                                 val parts = lastBracketContent.split(":", limit = 2)
                                                 parsedSpeaker = parts[0].trim()
-                                                parsedDialogue = parts[1].trim().trim('\'')
+                                                parsedDialogue = parts[1].trim().removeSurrounding("'")
                                             } else {
                                                 parsedSpeaker = uiState.winnerName
                                                 parsedDialogue = rawText.trim('[', ']')
@@ -479,38 +474,172 @@ fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onB
     }
 }
 
+// =============================================================== //
+// AUDIO HELPERS
+// =============================================================== //
+
+fun assetExists(context: Context, path: String): Boolean {
+    return try {
+        context.assets.open(path).close()
+        true
+    } catch (e: IOException) {
+        false
+    }
+}
+
+fun findCommandAudioFilename(storyId: String, command: StoryCommand, library: CommandLibrary): String? {
+    // Check simple lists
+    library.instruction?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_instruction_${index}.mp3"
+    }
+    library.instructiona?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_instructiona_${index}.mp3"
+    }
+    library.humiliation?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_humiliation_${index}.mp3"
+    }
+    library.praise?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_praise_${index}.mp3"
+    }
+    library.actionsDomOnSubHandsOnBody?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnBody_${index}.mp3"
+    }
+    library.actionsDomOnSubHandsOnPussy?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnPussy_${index}.mp3"
+    }
+    library.actionsDomOnSubHandsOnCock?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnCock_${index}.mp3"
+    }
+    library.actionsSubOnDomMouthOnPussy?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_actionsSubOnDomMouthOnPussy_${index}.mp3"
+    }
+    library.actionsSubOnDomMouthOnCock?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_actionsSubOnDomMouthOnCock_${index}.mp3"
+    }
+    library.subToDomWorship?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_subToDomWorship_${index}.mp3"
+    }
+
+    // Check map-based lists
+    library.toy_use?.forEach { (subKey, list) ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_toy_use_${subKey.replace(" ", "_")}_${index}.mp3"
+    }
+    library.kinkActions?.forEach { (subKey, list) ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_kinkActions_${subKey.replace(" ", "_")}_${index}.mp3"
+    }
+    library.aftercare?.forEach { (subKey, list) ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_aftercare_${subKey.replace(" ", "_")}_${index}.mp3"
+    }
+
+    return null // Command not found
+}
+
+
 @Composable
 fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
+    val context = LocalContext.current
     val act = uiState.actToPlay ?: return
     val story = uiState.selectedStory ?: return
     val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
 
     val playableSteps = act.filter { it is DialogueLine || it is DrawCommand }
+    var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
+    var debugText by remember { mutableStateOf("Debugging...") }
 
     if (playableSteps.isEmpty()) {
-        LaunchedEffect(Unit) {
-            onFinish()
-        }
+        LaunchedEffect(Unit) { onFinish() }
         return
     }
 
     val alpha = remember { Animatable(0f) }
     val currentLineIndex = remember { Animatable(0f) }
 
-    LaunchedEffect(playableSteps) {
-        alpha.animateTo(1f, animationSpec = tween(1000))
+    //This effect will handle the audio for the current line.
+    LaunchedEffect(currentLineIndex.value) {
+        mediaPlayer?.release()
+        mediaPlayer = null
 
+        val index = currentLineIndex.value.toInt()
+        if (index >= playableSteps.size) return@LaunchedEffect
+
+        val step = playableSteps[index]
+
+        // Construct the filename
+        val audioFileName: String? = when (step) {
+            is DialogueLine -> {
+                val actName = when (act) {
+                    story.act1Setup -> "act1Setup"
+                    story.act2Core -> "act2Core"
+                    story.act3Aftermath -> "act3Aftermath"
+                    story.aftercareScript -> "aftercareScript"
+                    else -> "unknownAct"
+                }
+                val speaker = step.speaker.replace(" ", "_")
+                val localStepIndex = act.indexOf(step)
+                "${story.id}_${actName}_${localStepIndex}_$speaker.mp3"
+            }
+            is DrawCommand -> {
+                val stepIndexInStory = allSteps.indexOf(step)
+                val command = uiState.drawnCommands[stepIndexInStory]
+                if (command != null) {
+                    findCommandAudioFilename(story.id, command, story.commandLibrary)
+                } else null
+            }
+            else -> null
+        }
+
+        val assetPath = if (audioFileName != null) "audio/$audioFileName" else null
+        val exists = if (assetPath != null) assetExists(context, assetPath) else false
+        debugText = "Looking for: $audioFileName\nExists: $exists"
+
+
+        if (assetPath != null && exists) {
+            try {
+                val afd = context.assets.openFd(assetPath)
+                val mp = MediaPlayer().apply {
+                    setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                    prepare()
+                    start()
+                    setOnCompletionListener { it.release() }
+                }
+                mediaPlayer = mp
+                afd.close()
+            } catch (e: Exception) {
+                debugText = "Error playing $audioFileName: ${e.message}"
+                mediaPlayer = null
+            }
+        }
+    }
+
+
+    // This effect handles the text animation sequence
+    LaunchedEffect(playableSteps) {
         while (currentLineIndex.value.toInt() < playableSteps.size) {
+            alpha.animateTo(1f, animationSpec = tween(1000))
+
             val step = playableSteps[currentLineIndex.value.toInt()]
             val displayTime = when (step) {
                 is DialogueLine -> (step.text.split(" ").size * 300L).coerceAtLeast(2000L)
                 is DrawCommand -> {
-                    val stepIndex = allSteps.indexOf(step)
-                    val command = uiState.drawnCommands[stepIndex]
+                    val stepIndexInStory = allSteps.indexOf(step)
+                    val command = uiState.drawnCommands[stepIndexInStory]
                     val rawText = command?.text ?: ""
                     val lastBracketContent = rawText.substringAfterLast('[', "").substringBeforeLast(']', "")
                     val dialogue = if (lastBracketContent.contains(':')) {
-                        lastBracketContent.split(":", limit = 2)[1].trim().trim('\'')
+                        lastBracketContent.split(":", limit = 2)[1].trim().removeSurrounding("'")
                     } else {
                         rawText.trim('[', ']')
                     }
@@ -523,19 +652,25 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
             alpha.animateTo(0f, animationSpec = tween(1000))
             currentLineIndex.animateTo(currentLineIndex.value + 1, animationSpec = tween(0))
 
-            if (currentLineIndex.value.toInt() < playableSteps.size) {
-                alpha.animateTo(1f, animationSpec = tween(1000))
-            } else {
+            if (currentLineIndex.value.toInt() >= playableSteps.size) {
                 onFinish()
             }
         }
     }
+    
+    DisposableEffect(Unit) {
+        onDispose { 
+            mediaPlayer?.release()
+        }
+    }
 
     Box(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(16.dp).clickable { onFinish() },
         contentAlignment = Alignment.Center
     ) {
-        val currentIndex = currentLineIndex.value.toInt().coerceAtMost(playableSteps.size - 1)
+        if (currentLineIndex.value.toInt() >= playableSteps.size) return@Box
+
+        val currentIndex = currentLineIndex.value.toInt()
         val step = playableSteps[currentIndex]
 
         when (step) {
@@ -574,7 +709,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                     if (lastBracketContent.contains(':')) {
                         val parts = lastBracketContent.split(":", limit = 2)
                         parsedSpeaker = parts[0].trim()
-                        parsedDialogue = parts[1].trim().trim('\'')
+                        parsedDialogue = parts[1].trim().removeSurrounding("'")
                     } else {
                         parsedSpeaker = uiState.winnerName
                         parsedDialogue = rawText.trim('[', ']')
@@ -603,7 +738,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                             imageVector = Icons.Filled.Star,
                             contentDescription = "Draw Command",
                             tint = MaterialTheme.colorScheme.secondary.copy(alpha = alpha.value),
-                            modifier = Modifier.size(32.dp) // Larger star
+                            modifier = Modifier.size(32.dp)
                         )
                         Spacer(Modifier.width(8.dp))
                         Text(
@@ -615,7 +750,16 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                     }
                 }
             }
-            else -> { /* Do nothing for other step types */ }
+            else -> {}
         }
+
+        // Debugging Text
+        Text(
+            text = debugText,
+            color = Color.White.copy(alpha = 0.7f),
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.align(Alignment.BottomCenter).padding(8.dp),
+            textAlign = TextAlign.Center
+        )
     }
 }
