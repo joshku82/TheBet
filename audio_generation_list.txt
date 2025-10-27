@@ -591,7 +591,7 @@ STORY: female_reward_01_audio_ref - The Harem Queen's Due
     female_reward_01_audio_ref_act1Setup_0_NARRATOR.mp3: "You lost the wager, and now you must serve your Queen. She takes her throne on the bed, propped by pillows. Your first task is to present the 'harem'. Her first command is simple:" * (exists)
     female_reward_01_audio_ref_act1Setup_2_BETH.mp3: "My royal passage must be readied for my guests. Attend to your Queen's pleasure first." * (exists)
     female_reward_01_audio_ref_act1Setup_3_NARRATOR.mp3: "You must perform dedicated oral worship until she deems herself ready." * (exists)
-    female_reward_01_audio_ref_act1Setup_7_NARRATOR.mp3: "Your service will be judged."
+    female_reward_01_audio_ref_act1Setup_7_NARRATOR.mp3: "Your service will be judged." * (exists)
 
   ## act2Core:
     female_reward_01_audio_ref_act2Core_0_NARRATOR.mp3: "Once she is satisfied, she commands you to bring the first 'stud.' You will skillfully use it on her." * (exists)
@@ -610,24 +610,24 @@ STORY: female_reward_01_audio_ref - The Harem Queen's Due
 --- Command Library ---
 
   ## instruction:
-    female_reward_01_audio_ref_lib_instruction_0.mp3: "[evaluating] [BETH: 'Hmm... adequate, eunuch, but your Queen requires perfection. More pressure.']"
-    female_reward_01_audio_ref_lib_instruction_1.mp3: "[impatiently] [BETH: 'Is that truly the best your tongue can do? My harem of studs offer more vigor. Try again.']"
-    female_reward_01_audio_ref_lib_instruction_2.mp3: "[pleased] [BETH: 'Ah, yes... there. You've found the spot. Focus your worship there, precisely.']"
-    female_reward_01_audio_ref_lib_instruction_3.mp3: "[demanding] [BETH: 'Faster now. Your Queen grows eager. Make me ready for my guests.']"
-    female_reward_01_audio_ref_lib_instruction_4.mp3: "[satisfied] [BETH: 'Your tongue shows promise... bury it deep within my cunt. That's it... now worship all of me with that tongue. Leave no part ignored.']"
-    female_reward_01_audio_ref_lib_instruction_5.mp3: "[commanding] [BETH: 'Now attend to my clit directly. It requires your absolute devotion before the others arrive.']"
-    female_reward_01_audio_ref_lib_instruction_6.mp3: "[breathless] [BETH: 'Yes... you have almost prepared the royal passage. Just a little more...']"
-    female_reward_01_audio_ref_lib_instruction_7.mp3: "[regal] [BETH: 'Enough. Your service is... acceptable. You have made your Queen ready. Now, bring me my first stud.']"
+    female_reward_01_audio_ref_lib_instruction_0.mp3: "[evaluating] [BETH: 'Hmm... adequate, eunuch, but your Queen requires perfection. More pressure.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_1.mp3: "[impatiently] [BETH: 'Is that truly the best your tongue can do? My harem studs offer more vigor. Try again.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_2.mp3: "[pleased] [BETH: 'Ah, yes... there. You've found the spot. Focus your worship there, precisely.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_3.mp3: "[demanding] [BETH: 'Faster now. Your Queen grows eager. Make me ready for my guests.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_4.mp3: "[satisfied] [BETH: 'Your tongue shows promise... bury it deep within my cunt. That's it... now worship all of me with that tongue. Leave no part ignored.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_5.mp3: "[commanding] [BETH: 'Now attend to my clit directly. It requires your absolute devotion before the others arrive.']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_6.mp3: "[breathless] [BETH: 'Yes... you have almost prepared the royal passage. Just a little more...']" * (exists)
+    female_reward_01_audio_ref_lib_instruction_7.mp3: "[regal] [BETH: 'Enough. Your service is... acceptable. You have made your Queen ready. Now, bring me my first stud.']" * (exists)
 
   ## instructiona:
-    female_reward_01_audio_ref_lib_instructiona_0.mp3: "[shouts] [BETH: 'Faster, eunuch! Drive them harder! Push your Queen over the edge!']"
-    female_reward_01_audio_ref_lib_instructiona_1.mp3: "[demanding] [BETH: 'Deeper! I need to feel them grinding inside me! Make me cum now!']"
-    female_reward_01_audio_ref_lib_instructiona_2.mp3: "[gasping] [BETH: 'Yes! Just like that! Don't stop! Only the toys! Bring me my release!']"
-    female_reward_01_audio_ref_lib_instructiona_3.mp3: "[breathless] [BETH: 'I'm so close! Keep that rhythm perfect! Make your Queen shatter!']"
-    female_reward_01_audio_ref_lib_instructiona_4.mp3: "[commanding] [BETH: 'Harder and faster now! Use those cocks like you were born for it! Give me everything!']"
-    female_reward_01_audio_ref_lib_instructiona_5.mp3: "[impressed] [BETH: 'Such skill with my toys! Now prove your ultimate worth! Finish me!']"
-    female_reward_01_audio_ref_lib_instructiona_6.mp3: "[imperious] [BETH: 'I am on the precipice! Your final task is simple: MAKE. ME. CUM.']"
-    female_reward_01_audio_ref_lib_instructiona_7.mp3: "[overwhelmed] [BETH: 'Don't slow down! Drown me in pleasure! Make the orgasm take me!']"
+    female_reward_01_audio_ref_lib_instructiona_0.mp3: "[shouts] [BETH: 'Faster, eunuch! Drive them harder! Push your Queen over the edge!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_1.mp3: "[demanding] [BETH: 'Deeper! I need to feel them grinding inside me! Make me cum now!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_2.mp3: "[gasping] [BETH: 'Yes! Just like that! Don't stop! Only the toys! Bring me my release!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_3.mp3: "[breathless] [BETH: 'I'm so close! Keep that rhythm perfect! Make your Queen shatter!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_4.mp3: "[commanding] [BETH: 'Harder and faster now! Use those cocks like you were born for it! Give me everything!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_5.mp3: "[impressed] [BETH: 'Such skill with my toys! Now prove your ultimate worth! Finish me!']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_6.mp3: "[imperious] [BETH: 'I am on the precipice! Your final task is simple: MAKE. ME. CUM.']" * (exists)
+    female_reward_01_audio_ref_lib_instructiona_7.mp3: "[overwhelmed] [BETH: 'Don't slow down! Drown me in pleasure! Make the orgasm take me!']" * (exists)
 
   ## humiliation:
     female_reward_01_audio_ref_lib_humiliation_0.mp3: "[dismissive] [BETH: 'Look at you, my pathetic little eunuch, preparing me for real cocks.']" * (exists)

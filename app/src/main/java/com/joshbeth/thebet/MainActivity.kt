@@ -1008,7 +1008,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                             Text(
                                 text = "$speakerToDisplay: $commandText",
                                 style = glowStyle.copy(
-                                    drawStyle = Stroke(width = 6.0f)
+                                    drawStyle = Stroke(width = 4.0f)
                                 ),
                                 color = Color.Black,
                                 textAlign = TextAlign.Center
