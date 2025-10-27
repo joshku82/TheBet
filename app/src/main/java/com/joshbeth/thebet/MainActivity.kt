@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
@@ -50,6 +51,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -75,6 +77,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 
 // =============================================================== //
 // VIEWMODEL
@@ -107,28 +112,32 @@ class StoryViewModel : ViewModel() {
         ) }
     }
 
-    fun startStory(story: StoryScript) {
+    fun startStory(story: StoryScript, curatedCommands: Map<Int, StoryCommand>? = null) {
         viewModelScope.launch {
-            val drawnCommands = mutableMapOf<Int, StoryCommand?>()
+            val drawnCommands = curatedCommands?.toMutableMap() ?: mutableMapOf()
             val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
 
-            val actsAndOffsets = listOf(
-                story.act1Setup to 0,
-                story.act2Core to story.act1Setup.size,
-                story.act3Aftermath to story.act1Setup.size + story.act2Core.size,
-                (story.aftercareScript ?: emptyList()) to story.act1Setup.size + story.act2Core.size + story.act3Aftermath.size
-            )
+            val acts = listOf(story.act1Setup, story.act2Core, story.act3Aftermath, (story.aftercareScript ?: emptyList()))
+            val actOffsets = listOf(0, story.act1Setup.size, story.act1Setup.size + story.act2Core.size, allSteps.size - (story.aftercareScript?.size ?: 0))
 
-            for ((act, offset) in actsAndOffsets) {
-                val usedCommandsInAct = mutableSetOf<StoryCommand>()
-                act.forEachIndexed { actIndex, step ->
+            acts.forEachIndexed { actIndex, act ->
+                val actStartOffset = actOffsets[actIndex]
+                val actEndOffset = actStartOffset + act.size
+                val usedCommandsInAct = drawnCommands
+                    .filter { (index, _) -> index >= actStartOffset && index < actEndOffset }
+                    .values
+                    .mapNotNull { it }
+                    .toMutableSet()
+
+                act.forEachIndexed { stepIndexInAct, step ->
                     if (step is DrawCommand) {
-                        val globalIndex = offset + actIndex
-                        val drawnCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary, usedCommandsInAct)
-
-                        if (drawnCommand != null) {
-                            usedCommandsInAct.add(drawnCommand)
-                            drawnCommands[globalIndex] = drawnCommand
+                        val globalIndex = actStartOffset + stepIndexInAct
+                        if (!drawnCommands.containsKey(globalIndex)) {
+                            val drawnCommand = CommandRepository.getRandomCommand(step.from, story.commandLibrary, usedCommandsInAct)
+                            if (drawnCommand != null) {
+                                usedCommandsInAct.add(drawnCommand)
+                                drawnCommands[globalIndex] = drawnCommand
+                            }
                         }
                     }
                 }
@@ -149,6 +158,15 @@ class StoryViewModel : ViewModel() {
             it.copy(
                 actToPlay = act,
                 currentScreen = Screen.STORY_PLAYER
+            )
+        }
+    }
+
+    fun startCuration(story: StoryScript) {
+        _uiState.update {
+            it.copy(
+                selectedStory = story,
+                currentScreen = Screen.COMMAND_CURATION
             )
         }
     }
@@ -227,10 +245,13 @@ fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
                 winnerName = uiState.winnerName,
                 loserName = uiState.loserName,
                 path = uiState.chosenPath ?: "",
-                onStorySelected = { story -> viewModel.startStory(story) }
+                onStorySelected = { story -> viewModel.startStory(story) },
+                onCurationSelected = { story -> viewModel.startCuration(story) },
+                onBack = { viewModel.goBackToStart() }
             )
             Screen.STORY_SCREEN -> StoryScreen(uiState = uiState, onPlayAct = { act -> viewModel.playAct(act) }, onBack = { viewModel.goBackToStart() })
             Screen.STORY_PLAYER -> StoryPlayerScreen(uiState = uiState, onFinish = { viewModel.finishAct() })
+            Screen.COMMAND_CURATION -> CommandCurationScreen(uiState = uiState, onConfirm = { story, commands -> viewModel.startStory(story, commands) }, onBack = { viewModel.goBackToStart() })
         }
     }
 }
@@ -298,46 +319,252 @@ fun RewardPunishmentChoiceScreen(winnerName: String, onChoiceSelected: (String) 
 
 
 @Composable
-fun StorySelectionScreen(winnerName: String, loserName: String, path: String, onStorySelected: (StoryScript) -> Unit) {
-    val dominantGender = if (winnerName.equals("Josh", ignoreCase = true)) "Male" else "Female"
-    val stories = StoryRepository.getAllStories().filter {
-        it.type.equals(path, ignoreCase = true) && (it.dominantGender == null || it.dominantGender.equals(dominantGender, ignoreCase = true))
+fun StorySelectionScreen(
+    winnerName: String,
+    loserName: String,
+    path: String,
+    onStorySelected: (StoryScript) -> Unit,
+    onCurationSelected: (StoryScript) -> Unit,
+    onBack: () -> Unit
+) {
+    var selectedStoryId by remember { mutableStateOf<String?>(null) }
+
+    val stories = StoryRepository.getAllStories()
+
+    if (selectedStoryId != null) {
+        val story = stories.find { it.id == selectedStoryId }!!
+        AlertDialog(
+            onDismissRequest = { selectedStoryId = null },
+            title = { Text("Choose Mode") },
+            text = { Text("How do you want to experience this story?") },
+            confirmButton = {
+                Button(onClick = {
+                    onStorySelected(story)
+                    selectedStoryId = null
+                }) {
+                    Text("Random")
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    onCurationSelected(story)
+                    selectedStoryId = null
+                }) {
+                    Text("Curated")
+                }
+            }
+        )
     }
-    
-    LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
-        item {
-            Text(
-                text = "Choose a $path",
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-        }
-        if (stories.isEmpty()) {
+    // For Rewards, the dominant gender is the winner.
+    // For Punishments, the 'dominantGender' in the JSON refers to the person being punished (the loser).
+    val targetGender = if (path.equals("Punishment", ignoreCase = true)) {
+        if (loserName.equals("Josh", ignoreCase = true)) "Male" else "Female"
+    } else { // Reward
+        if (winnerName.equals("Josh", ignoreCase = true)) "Male" else "Female"
+    }
+
+    val filteredStories = stories.filter {
+        it.type.equals(path, ignoreCase = true) && (it.dominantGender == null || it.dominantGender.equals(targetGender, ignoreCase = true))
+    }
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.weight(1f), contentPadding = PaddingValues(16.dp)) {
             item {
                 Text(
-                    "No stories available for this selection.",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onBackground
+                    text = "Choose a $path",
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
-        } else {
-            items(stories) { story ->
-                Card(
-                    modifier = Modifier.padding(vertical = 8.dp).clickable { onStorySelected(story) },
-                    shape = RoundedCornerShape(16.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        val conceptText = story.concept
-                            .replace("{winner}", winnerName, ignoreCase = true)
-                            .replace("{loser}", loserName, ignoreCase = true)
-                        Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
+            if (filteredStories.isEmpty()) {
+                item {
+                    Text(
+                        "No stories available for this selection.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            } else {
+                items(filteredStories) { story ->
+                    val isPlayable = story.id == "female_reward_01_audio_ref" || story.id == "male_punishment_01" || story.id == "male_reward_01" || story.id == "female_punishment_01"
+                    val cardAlpha = if (isPlayable) 1f else 0.5f
+
+                    Card(
+                        modifier = Modifier
+                            .padding(vertical = 8.dp)
+                            .alpha(cardAlpha)
+                            .clickable(enabled = isPlayable) { selectedStoryId = story.id },
+                        shape = RoundedCornerShape(16.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    ) {
+                        Box {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                val conceptText = story.concept
+                                    .replace("{winner}", winnerName, ignoreCase = true)
+                                    .replace("{loser}", loserName, ignoreCase = true)
+                                Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
+                            }
+                            if (!isPlayable) {
+                                Box(
+                                    modifier = Modifier
+                                        .matchParentSize()
+                                        .background(Color.Black.copy(alpha = 0.5f)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        "Coming Soon",
+                                        style = MaterialTheme.typography.headlineMedium,
+                                        color = Color.White,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
+            }
+        }
+
+        Button(
+            onClick = onBack,
+            modifier = Modifier.padding(16.dp).fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text("Back", color = MaterialTheme.colorScheme.onSecondary)
+        }
+    }
+}
+
+@Composable
+fun CommandCurationScreen(uiState: StoryUiState, onConfirm: (StoryScript, Map<Int, StoryCommand>) -> Unit, onBack: () -> Unit) {
+    val story = uiState.selectedStory ?: return
+    val allSteps = story.act1Setup + story.act2Core + story.act3Aftermath + (story.aftercareScript ?: emptyList())
+    val commandSteps = allSteps.mapIndexedNotNull { index, step ->
+        if (step is DrawCommand) index to step else null
+    }
+
+    var selectedCommands by remember { mutableStateOf<Map<Int, StoryCommand>>(emptyMap()) }
+
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Text(
+            text = "Curate Commands",
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.padding(bottom = 4.dp)
+        )
+        Text(
+            text = story.title,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        LazyColumn(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            items(commandSteps) { (index, step) ->
+                var expanded by remember { mutableStateOf(false) }
+                val selectedCommand = selectedCommands[index]
+                val options = CommandRepository.getCommandsForCategory(step.from, story.commandLibrary)
+
+                Column {
+                    Text(
+                        text = "Draw from: ${step.from}",
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f))
+                    ) {
+                        Box(modifier = Modifier.clickable { expanded = true }) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                if (selectedCommand != null) {
+                                    Text(
+                                        text = selectedCommand.text,
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        modifier = Modifier.weight(1f, fill = false),
+                                        maxLines = 1
+                                    )
+                                } else {
+                                    Text(
+                                        text = "Randomly Selected",
+                                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                                        fontStyle = FontStyle.Italic,
+                                        modifier = Modifier.weight(1f, fill = false)
+                                    )
+                                }
+                                Icon(
+                                    imageVector = Icons.Default.ArrowDropDown,
+                                    contentDescription = "Open options",
+                                    tint = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+
+                            DropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = { expanded = false },
+                                modifier = Modifier.background(MaterialTheme.colorScheme.surface)
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text("Randomly Select", fontStyle = FontStyle.Italic) },
+                                    onClick = {
+                                        selectedCommands = selectedCommands - index
+                                        expanded = false
+                                    }
+                                )
+                                HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+                                options.forEachIndexed { itemIndex, command ->
+                                    DropdownMenuItem(
+                                        text = { Text(command.text) },
+                                        onClick = {
+                                            selectedCommands = selectedCommands + (index to command)
+                                            expanded = false
+                                        }
+                                    )
+                                    if (itemIndex < options.lastIndex) {
+                                        HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Row(Modifier.padding(top = 16.dp)) {
+            Button(
+                onClick = onBack,
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text("Back", color = MaterialTheme.colorScheme.onSecondary)
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Button(
+                onClick = { onConfirm(story, selectedCommands) },
+                enabled = true,
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text("Start Story", color = MaterialTheme.colorScheme.onPrimary)
             }
         }
     }
@@ -497,6 +724,10 @@ fun findCommandAudioFilename(storyId: String, command: StoryCommand, library: Co
         val index = list.indexOf(command)
         if (index != -1) return "${storyId}_lib_instructiona_${index}.mp3"
     }
+    library.instruction_climax?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_instruction_climax_${index}.mp3"
+    }
     library.humiliation?.let { list ->
         val index = list.indexOf(command)
         if (index != -1) return "${storyId}_lib_humiliation_${index}.mp3"
@@ -529,6 +760,30 @@ fun findCommandAudioFilename(storyId: String, command: StoryCommand, library: Co
         val index = list.indexOf(command)
         if (index != -1) return "${storyId}_lib_subToDomWorship_${index}.mp3"
     }
+    library.position?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_position_${index}.mp3"
+    }
+    library.intensity?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_intensity_${index}.mp3"
+    }
+    library.setup_humiliation?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_setup_humiliation_${index}.mp3"
+    }
+    library.positioning?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_positioning_${index}.mp3"
+    }
+    library.climax_instruction?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_climax_instruction_${index}.mp3"
+    }
+    library.instruction_force_position?.let { list ->
+        val index = list.indexOf(command)
+        if (index != -1) return "${storyId}_lib_instruction_force_position_${index}.mp3"
+    }
 
     // Check map-based lists
     library.toy_use?.forEach { (subKey, list) ->
@@ -557,7 +812,6 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
 
     val playableSteps = act.filter { it is DialogueLine || it is DrawCommand }
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
-    var debugText by remember { mutableStateOf("Debugging...") }
 
     if (playableSteps.isEmpty()) {
         LaunchedEffect(Unit) { onFinish() }
@@ -602,11 +856,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
         }
 
         val assetPath = if (audioFileName != null) "audio/$audioFileName" else null
-        val exists = if (assetPath != null) assetExists(context, assetPath) else false
-        debugText = "Looking for: $audioFileName\nExists: $exists"
-
-
-        if (assetPath != null && exists) {
+        if (assetPath != null && assetExists(context, assetPath)) {
             try {
                 val afd = context.assets.openFd(assetPath)
                 val mp = MediaPlayer().apply {
@@ -618,7 +868,6 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                 mediaPlayer = mp
                 afd.close()
             } catch (e: Exception) {
-                debugText = "Error playing $audioFileName: ${e.message}"
                 mediaPlayer = null
             }
         }
@@ -687,15 +936,27 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                     "NARRATOR" -> DialogueGreen
                     else -> MaterialTheme.colorScheme.onSurface
                 }
-                val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = 16f))
+                val glowRadius = if (speakerToDisplay.equals("Josh", ignoreCase = true)) 32f else 16f
+                val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = glowRadius))
 
-                Text(
-                    text = "$speakerToDisplay: $textToDisplay",
-                    style = glowStyle,
-                    color = dialogueColor.copy(alpha = alpha.value),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.alpha(alpha.value)
-                )
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.alpha(alpha.value)) {
+                    // Border/stroke text
+                    Text(
+                        text = "$speakerToDisplay: $textToDisplay",
+                        style = glowStyle.copy(
+                            drawStyle = Stroke(width = 4.0f)
+                        ),
+                        color = Color.Black,
+                        textAlign = TextAlign.Center
+                    )
+                    // Fill text
+                    Text(
+                        text = "$speakerToDisplay: $textToDisplay",
+                        style = glowStyle,
+                        color = dialogueColor,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             is DrawCommand -> {
                 val stepIndex = allSteps.indexOf(step)
@@ -727,7 +988,8 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                         "NARRATOR" -> DialogueGreen
                         else -> MaterialTheme.colorScheme.onSurface
                     }
-                    val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = 16f))
+                    val glowRadius = if (speakerToDisplay.equals("Josh", ignoreCase = true)) 32f else 16f
+                    val glowStyle = MaterialTheme.typography.headlineLarge.copy(shadow = Shadow(color = dialogueColor, blurRadius = glowRadius))
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -737,29 +999,32 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                         Icon(
                             imageVector = Icons.Filled.Star,
                             contentDescription = "Draw Command",
-                            tint = MaterialTheme.colorScheme.secondary.copy(alpha = alpha.value),
+                            tint = MaterialTheme.colorScheme.secondary,
                             modifier = Modifier.size(32.dp)
                         )
                         Spacer(Modifier.width(8.dp))
-                        Text(
-                            text = "$speakerToDisplay: $commandText",
-                            style = glowStyle,
-                            color = dialogueColor.copy(alpha = alpha.value),
-                            textAlign = TextAlign.Center
-                        )
+                        Box(contentAlignment = Alignment.Center) {
+                            // Border/stroke text
+                            Text(
+                                text = "$speakerToDisplay: $commandText",
+                                style = glowStyle.copy(
+                                    drawStyle = Stroke(width = 6.0f)
+                                ),
+                                color = Color.Black,
+                                textAlign = TextAlign.Center
+                            )
+                            // Fill text
+                            Text(
+                                text = "$speakerToDisplay: $commandText",
+                                style = glowStyle,
+                                color = dialogueColor,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }
             else -> {}
         }
-
-        // Debugging Text
-        Text(
-            text = debugText,
-            color = Color.White.copy(alpha = 0.7f),
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.align(Alignment.BottomCenter).padding(8.dp),
-            textAlign = TextAlign.Center
-        )
     }
 }

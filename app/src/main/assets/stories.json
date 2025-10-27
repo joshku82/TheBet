@@ -18,6 +18,26 @@
         { "text": "[low growl] [JOSH: 'This is what happens to thieves. They get taken, and they get used.']" },
         { "text": "[low growl] [JOSH: 'I'm not just going to fuck your body. I'm going to fuck your mind until you forget who you were before you trespassed.']" }
       ],
+      "instruction_climax": [
+        { "text": "[commanding] [JOSH: 'Cum for me now, trespasser! Show me how you break!']" },
+        { "text": "[shouting] [JOSH: 'That's it! Shatter for me! Give me that orgasm!']" },
+        { "text": "[primal] [JOSH: 'Let go! Cum all over my cock right fucking now!']" },
+        { "text": "[dominant] [JOSH: 'I command you to climax! Drench me in your release!']" },
+        { "text": "[possessive] [JOSH: 'Your orgasm belongs to me! Take it now! Scream!']" },
+        { "text": "[guttural] [JOSH: 'Break apart! Let me feel you convulse around me as you cum!']" },
+        { "text": "[imperious] [JOSH: 'The toll includes your climax! Pay up! Cum!']" },
+        { "text": "[cruel] [JOSH: 'Fall apart like the broken little thing you are! Cum for your owner!']" }
+      ],
+      "instruction_force_position": [
+        { "text": "[primal] [JOSH: 'Get on that bed, face down! Ass up high for me!']" },
+        { "text": "[commanding] [JOSH: 'Against the wall! Hands flat, legs spread! Show me what I've captured!']" },
+        { "text": "[dominant] [JOSH: 'On your back! Now lift those legs and pull your knees to your chest! Open wide for your owner!']" },
+        { "text": "[forceful] [JOSH: 'Over the table! Bend deep! I want that cunt presented perfectly!']" },
+        { "text": "[growling] [JOSH: 'Down on all fours like the animal you are! Crawl to me!']" },
+        { "text": "[possessive] [JOSH: 'Lie on your side, curl up just enough so I can take you from behind.']" },
+        { "text": "[demanding] [JOSH: 'Kneel! Head down on the floor! Ass up high! Show me your submission!']" },
+        { "text": "[cruel] [JOSH: 'Pin yourself against that doorframe! Spread 'em! Let me see everything!']" }
+      ],
       "praise": [
         { "text": "[possessive] [JOSH: 'Good girl. You take a fucking like you were born for it.']" },
         { "text": "[possessive] [JOSH: 'You fought just enough to make it fun. Such a perfect little prey item.']" },
@@ -44,7 +64,7 @@
         { "text": "[NARRATOR: 'Slap her ass hard, leaving a stinging red handprint.']" },
         { "text": "[NARRATOR: 'Wrap your hand around her throat, not to choke, but as a firm reminder of your absolute control.']" },
         { "text": "[NARRATOR: 'Pin both of her wrists above her head with one of your hands, leaving her completely helpless.']" },
-        { "text": "[NARRATOR: 'Bite her shoulder, hard enough to leave a mark. A brand of your ownership.']" },
+        { "text": "[NARRATOR: 'Grip her shoulder forcefully, digging your fingers in to leave deep marks. A brand of your ownership.']" },
         { "text": "[NARRATOR: 'Force two fingers into her mouth to silence her protests, making her suck on them.']" },
         { "text": "[NARRATOR: 'Slowly trace a single finger down her spine, making her shiver in anticipation before you take her.']" }
       ],
@@ -63,7 +83,7 @@
       "kinkActions": {
         "for_her": [
           { "text": "[NARRATOR: 'Hold her down and fuck her with a brutal, relentless rhythm.']" },
-          { "text": "[NARRATOR: 'Spit in her mouth before you fuck her, marking her as yours.']" },
+          { "text": "[NARRATOR: 'Spit directly onto her presented ass before you shove your cock inside her, marking your territory like an animal.']" },
           { "text": "[NARRATOR: 'Force her to her knees and use her mouth first. A proper claiming starts with the throat.']" },
           { "text": "[NARRATOR: 'After fucking her cunt, immediately pull out and roughly fuck her ass. Claim every hole on your property.']" },
           { "text": "[NARRATOR: 'Lift one of her legs up onto your shoulder, forcing her open for a deeper, more punishing angle.']" },
@@ -74,61 +94,69 @@
       },
       "aftercare": {
         "physical": [
-          { "text": "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']" },
-          { "text": "[NARRATOR: 'Hold them close and stroke their hair.']" },
-          { "text": "[NARRATOR: 'Wrap them in a warm blanket.']" },
-          { "text": "[NARRATOR: 'Give them a gentle, loving massage.']" },
-          { "text": "[NARRATOR: 'Get them a glass of water.']" }
+          { "text": "[NARRATOR: 'Gently cradle her face in your hands, making soft eye contact.']" },
+          { "text": "[NARRATOR: 'Slowly massage her wrists where they were bound, offering comfort.']" },
+          { "text": "[NARRATOR: 'Pull her fully against your chest, wrapping your arms securely around her.']" },
+          { "text": "[NARRATOR: 'Softly kiss her forehead, shoulders, anywhere that isn't overtly sexual.']" },
+          { "text": "[NARRATOR: 'Gently stroke her back or hair as you hold her close.']" },
+          { "text": "[NARRATOR: 'Offer her a sip of water, holding the glass for her if she wants.']" },
+          { "text": "[NARRATOR: 'Wipe away any tears gently with your thumb.']" },
+          { "text": "[NARRATOR: 'Just hold her quietly for a minute, letting your heartbeats sync.']" }
         ],
         "verbal": [
-          { "text": "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']" },
-          { "text": "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']" },
-          { "text": "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']" },
-          { "text": "[sincere] [NARRATOR: 'I love you. You are safe with me.']" },
-          { "text": "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']" }
+          { "text": "[softly] [JOSH: 'It's over now, baby. It was just a game. You're safe right here with me.']" },
+          { "text": "[lovingly] [JOSH: 'You were absolutely incredible. Thank you for trusting me like that, letting me explore that side.']" },
+          { "text": "[reassuringly] [JOSH: 'That was intense, I know. How are you feeling right now? Talk to me.']" },
+          { "text": "[warmly] [JOSH: 'Seeing you fight and then give in... god, it was so incredibly hot. You played your part perfectly.']" },
+          { "text": "[sincerely] [JOSH: 'I love you so much. You know that predator isn't really me, right? It's just a role we play.']" },
+          { "text": "[gently] [JOSH: 'Are you sore anywhere? Did I get too rough? Tell me honestly.']" },
+          { "text": "[admiringly] [JOSH: 'Your strength in letting go like that... it's amazing. You're amazing.']" },
+          { "text": "[tenderly] [JOSH: 'Let's just stay like this for a bit. Just us. No roles, just closeness.']" }
         ]
       }
     },
     "act1Setup": [
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You won the wager, and now you claim your prize. You find her 'trespassing' in a vulnerable part of your home. She tries to run, but you are the predator. You corner her against a wall, your voice a low growl." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "The wager is won. Time to collect. You find her 'trespassing' where she shouldn't be. She startles, tries to run, but you move faster, cornering her against the wall. Your voice drops to a low, possessive growl." },
       { "type": "action", "tag": "low growl" },
       { "type": "draw", "from": "humiliation" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "Her struggling only makes you harder as you bind her hands." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Her struggling only fuels your arousal as you bind her wrists firmly behind her back." },
       { "type": "action", "tag": "smirks" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "She is now your captive." }
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "She is Bound and claimed. Utterly helpless before you now." }
     ],
     "act2Core": [
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You drag your prize to a spot of your choosing and rip her shirt open." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "You drag your prize where you want her, then rip her shirt open, exposing skin." },
       { "type": "action", "tag": "primal" },
-      { "type": "draw", "from": "instruction" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You throw her down, bending her over." },
-      { "type": "action", "tag": "shouting" },
       { "type": "dialogue", "speaker": "JOSH", "text": "This is my land. This is my house. And now, this cunt is mine too." },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You fuck her with a raw, animalistic intensity." },
+      { "type": "action", "tag": "shouting" },
+      { "type": "draw", "from": "instruction_force_position" },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "With rough hands, you force her body into the exact position you commanded." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "You fuck her with a raw, animal intensity, taking what's yours." },
       { "type": "draw", "from": "actionsDomOnSubHandsOnBody" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You use her for your pleasure." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "You use her body for your pleasure." },
       { "type": "draw", "from": "kinkActions.for_her" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "As she gets close, you command her climax." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Perhaps adding another layer to her violation..." },
+      { "type": "draw", "from": "toy_use.on_female_sub" },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "As she nears the edge, trembling, you seize control, using deliberate, powerful thrusts of your cock to force her climax while you command it." },
       { "type": "action", "tag": "commanding" },
-      { "type": "draw", "from": "instruction" }
+      { "type": "draw", "from": "instruction_climax" }
     ],
     "act3Aftermath": [
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You take your own orgasm, cumming deep inside her or all over her back." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Finally, you take your own powerful orgasm, roaring as you flood her womb or coat her back." },
       { "type": "action", "tag": "pause" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "Do not release her immediately. Hold her down for a full minute, letting her feel your ownership." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Don't release her yet. Stay inside, or keep her pinned for a full minute. Let her feel the weight of your ownership, the proof of your claim." },
       { "type": "action", "tag": "possessive" },
       { "type": "draw", "from": "praise" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "Your final line, whispered harshly in her ear, is simple:" },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Leaning close, your final line is a harsh whisper against her ear:" },
       { "type": "action", "tag": "harsh whisper" },
       { "type": "dialogue", "speaker": "JOSH", "text": "The toll is paid." },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "You then untie her, and the scene ends." }
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "You then slowly untie her wrists. The scene ends." }
     ],
     "aftercareScript": [
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "After the intensity of the scene, it's crucial to re-establish connection. Hardcoded instruction:" },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "After such intensity, grounding yourselves and reconnecting is vital. Hardcoded instruction:" },
       { "type": "action", "tag": "softly" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "Gently turn her over, pull her close, and hold her. Your tone must be soft and loving." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Gently turn her over. Pull her close, hold her securely. Your voice must shift entirely now – soft, warm, loving." },
       { "type": "draw", "from": "aftercare.verbal" },
-      { "type": "dialogue", "speaker": "NARRATOR", "text": "Provide gentle, reassuring touch." },
+      { "type": "dialogue", "speaker": "NARRATOR", "text": "Offer gentle, reassuring touch – stroking her hair, holding her hand, simple closeness." },
       { "type": "draw", "from": "aftercare.physical" }
     ]
   },
@@ -1321,25 +1349,35 @@
     "imagePlaceholder": "male_punishment_01.jpg",
     "concept": "A humiliating pegging scene where Beth, as punishment, forces Josh to accept his role as the 'cunt' and take her cock in his ass.",
     "commandLibrary": {
-      "instruction": [
-        { "text": "[commanding] [BETH: 'Your ass is mine tonight. Prepare it for my cock.']" },
-        { "text": "[commanding] [BETH: 'I'm going to make you feel what it's like to be the girl. Now, present that hole.']" },
-        { "text": "[commanding] [BETH: 'Take my cock, you pathetic loser. All of it.']" },
-        { "text": "[commanding] [BETH: 'Don't fight it. You know you were made for this. Made to be my cunt.']" },
-        { "text": "[commanding] [BETH: 'Worship my strap-on before you take it. Lick it clean.']" },
-        { "text": "[commanding] [BETH: 'I want you to beg me to fuck your ass. I want to hear you plead for it.']" },
-        { "text": "[commanding] [BETH: 'You will look me in the eyes as I make you mine.']" },
-        { "text": "[commanding] [BETH: 'Clench for me. I want to feel that boy-pussy of yours grip my cock.']" }
+      "position": [
+        { "text": "[commanding] [BETH: 'On all fours. Now. Ass high in the air like the animal you are.']" },
+        { "text": "[commanding] [BETH: 'Get over my knee. Right now. Present that pathetic hole for its punishment.']" },
+        { "text": "[commanding] [BETH: 'Face down on the bed, ass pushed up towards me. Display the target clearly.']" },
+        { "text": "[commanding] [BETH: 'Lie on your back and pull your knees tight to your chest. Spread yourself wide open for me.']" },
+        { "text": "[commanding] [BETH: 'Bend over the edge of the bed. I want that ass elevated and perfectly presented for my cock.']" },
+        { "text": "[commanding] [BETH: 'Hands flat against the wall. Spread your legs wide and stick that ass out. Don't dare hide it from me.']" },
+        { "text": "[commanding] [BETH: 'Kneel on the floor, then bend forward until your face touches the ground. Offer that ass up in proper supplication.']" },
+        { "text": "[commanding] [BETH: 'Assume the position you hate the most. Show me exactly how much you'll endure to pay your debt tonight.']" }
       ],
-      "humiliation": [
-        { "text": "[mocking] [BETH: 'Such a tight little cunt for me to use. You're better than a real girl.']" },
-        { "text": "[mocking] [BETH: 'Listen to those pathetic whimpers. You love being my bitch, don't you?']" },
-        { "text": "[mocking] [BETH: 'Who's the man now? That's right, it's me. And you're just the hole.']" },
-        { "text": "[mocking] [BETH: 'I'm going to fuck you so hard you'll forget you even have a dick.']" },
-        { "text": "[mocking] [BETH: 'Your ass is just another hole for me to use whenever I want.']" },
-        { "text": "[mocking] [BETH: 'I bet you think about this all the time. Being forced to take a cock like a good sissy.']" },
-        { "text": "[mocking] [BETH: 'Your punishment is my pleasure. The perfect arrangement.']" },
-        { "text": "[mocking] [BETH: 'Every thrust is me reminding you that you lost. That you are beneath me.']" }
+      "intensity": [
+        { "text": "[commanding] [BETH: 'Take it. Every inch. Don't you dare push back against my cock.']" },
+        { "text": "[demanding] [BETH: 'Faster. Match my rhythm. Show me how desperate that hole is for me.']" },
+        { "text": "[coldly] [BETH: 'I'm going deeper now. You will accept all of me without complaint.']" },
+        { "text": "[mocking] [BETH: 'Listen to yourself whimper as I pound that ass. Music to my ears. Keep whimpering for me.']" },
+        { "text": "[dominant] [BETH: 'Clench down on my cock. Grip me tight with that pathetic boy-pussy.']" },
+        { "text": "[cruelly] [BETH: 'I'm hitting your prostate on purpose. Does it feel good, slut? Doesn't matter. You take it anyway.']" },
+        { "text": "[impatiently] [BETH: 'Stop squirming. Hold still and take your punishment like a good little cunt.']" },
+        { "text": "[possessive] [BETH: 'That's right. My cock fucking your ass. This is your purpose now. Accept it.']" }
+      ],
+      "setup_humiliation": [
+        { "text": "[mocking] [BETH: 'Look at this cock I wield. This is what's going to turn you into the pathetic little cunt you truly are tonight.']" },
+        { "text": "[smirking] [BETH: 'See this? This means *I* have the cock now, and *you*... you're just the bitch I'm about to fuck with it.']" },
+        { "text": "[coldly] [BETH: 'This dildo proves who has the power now. You lost. You're just a hole for my pleasure.']" },
+        { "text": "[cruelly] [BETH: 'I'm going to pound your ass so hard with my cock, you'll forget you ever had one of your own.']" },
+        { "text": "[possessive] [BETH: 'My cock owns your ass tonight. It goes where I want, as deep as I want, whenever I want.']" },
+        { "text": "[teasing] [BETH: 'Dreaming about this, sissy? Being held down and forced to take a cock like a good little girl? Your dream's about to come true.']" },
+        { "text": "[satisfied] [BETH: 'Your punishment is going to be my absolute pleasure. Watching you break under my cock... perfect.']" },
+        { "text": "[dominant] [BETH: 'Every inch of this going inside you will be a reminder that you are *mine* to use as your Mistress sees fit.']" }
       ],
       "praise": [
         { "text": "[pleased] [BETH: 'Good boy, taking your punishment so well for me.']" },
@@ -1353,25 +1391,34 @@
       ],
       "toy_use": {
         "on_male_sub": [
-          { "text": "[commanding] [BETH: 'We'll start your training with The Average Size Dick. This is your new reality.']" },
-          { "text": "[commanding] [BETH: 'This is my cock now. Open up and take The Big Cock like the bitch you are.']" },
-          { "text": "[commanding] [BETH: 'I'm going to make you take my fantasy cock. Prepare for The Big Unicorn.']" },
-          { "text": "[commanding] [BETH: 'Let's see how your ass handles a knot. I'm fucking you with The K9.']" },
-          { "text": "[commanding] [BETH: 'Your punishment is to be completely broken. I'm going to wreck your ass with The Monster Dick.']" },
-          { "text": "[commanding] [BETH: 'Your pathetic ass only deserves my smallest cock. You will be fucked by The Tiny Unicorn.']" },
-          { "text": "[commanding] [BETH: 'First, I'm plugging your useless cunt with the Small Purple Butt Plug to get you ready for the real thing.']" },
-          { "text": "[commanding] [BETH: 'My cock isn't enough of a punishment. I'm putting on The Knot Sleeve to really stretch that pathetic boy-cunt of yours.']" }
+          { "text": "[commanding] [BETH: 'Your training in submission begins now. You will take The Average Size Dick.']" },
+          { "text": "[mocking] [BETH: 'This is my cock tonight. And you're the bitch who's going to take The Big Cock up your ass.']" },
+          { "text": "[smirking] [BETH: 'My fantasy requires a sacrifice. Your ass will serve The Big Unicorn.']" },
+          { "text": "[predatory] [BETH: 'Let's see how your tight little hole handles a knot. Prepare yourself for The K9.']" },
+          { "text": "[coldly] [BETH: 'Your punishment demands severity. Tonight, your ass belongs to The Monster Dick.']" },
+          { "text": "[humiliating] [BETH: 'Losing means you don't even deserve a real cock. Your pathetic ass gets fucked by The Tiny Unicorn.']" },
+          { "text": "[cruelly] [BETH: 'This strap-on alone isn't enough for what you deserve. I'm adding The Knot Sleeve. You will feel every ridge stretch that boy-cunt open.']" }
         ]
       },
       "actionsDomOnSubHandsOnCock": [
         { "text": "[NARRATOR: 'Squeeze his balls while you peg him, reminding him who's in control of his pleasure.']" },
         { "text": "[NARRATOR: 'Jerk him off with a slow, teasing rhythm as you fuck his ass, keeping him on the edge.']" },
-        { "text": "[NARRATOR: 'Put him in chastity before you begin, ensuring his pathetic cock is useless during his punishment.']" },
+        { "text": "[NARRATOR: 'Wrap your hand tightly around the base of his cock, trapping the blood and intensifying his helpless arousal.']" },
         { "text": "[NARRATOR: 'Force him to stroke his own cock while you fuck him, making him participate in his own feminization.']" },
-        { "text": "[NARRATOR: 'Deny him completely, slapping his hand away if he tries to touch himself.']" },
+        { "text": "[NARRATOR: 'Deny him completely, slapping his hand away if he tries to touch himself while you pound his ass.']" },
         { "text": "[NARRATOR: 'Use a vibrator on the head of his cock, overloading his senses while you pound his ass.']" },
-        { "text": "[NARRATOR: 'Just as he's about to cum, stop all stimulation and let him suffer.']" },
-        { "text": "[NARRATOR: 'Hold a vibrator against his prostate through his perineum, trying to force an orgasm.']" }
+        { "text": "[NARRATOR: 'Just as he's about to cum from your hand, stop all stimulation and let him suffer.']" },
+        { "text": "[NARRATOR: 'Hold a vibrator against his prostate through his perineum, trying to force an orgasm while you peg him.']" }
+      ],
+      "humiliation": [
+        { "text": "[mocking] [BETH: 'Did my little cunt leak from his ass just now? How utterly pathetic. You don't even cum properly anymore.']" },
+        { "text": "[coldly] [BETH: 'All filled up and broken in. Just how I like my toys after I'm done playing with them.']" },
+        { "text": "[smirking] [BETH: 'You took my cock beautifully, whimpering and leaking like the good little sissy slut you are.']" },
+        { "text": "[dismissive] [BETH: 'See? This is the price for losing. You end up full of my cock, completely used. Lesson learned, I hope?']" },
+        { "text": "[satisfied] [BETH: 'I've had my fill of punishing that tight hole. My pleasure is complete. Yours never even mattered.']" },
+        { "text": "[cruelly] [BETH: 'Look at you... wrecked and stretched out by my cock. Don't worry, it'll feel even better next time I decide to use you.']" },
+        { "text": "[dominant] [BETH: 'Remember this feeling of being utterly used. This is your place now, beneath me, taking my cock.']" },
+        { "text": "[objectifying] [BETH: 'The debt is paid. This hole has served its purpose. Time to empty you out.']" }
       ],
       "kinkActions": {
         "for_him": [
@@ -1387,18 +1434,24 @@
       },
       "aftercare": {
         "physical": [
-          { "text": "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']" },
-          { "text": "[NARRATOR: 'Hold them close and stroke their hair.']" },
-          { "text": "[NARRATOR: 'Wrap them in a warm blanket.']" },
-          { "text": "[NARRATOR: 'Give them a gentle, loving massage.']" },
-          { "text": "[NARRATOR: 'Get them a glass of water.']" }
+          { "text": "[NARRATOR: 'She carefully removes the strap-on dildo and sets it aside, her movements now gentle.']" },
+          { "text": "[NARRATOR: 'She gently helps you up from your position, guiding you into a comfortable cuddle beside her.']" },
+          { "text": "[NARRATOR: 'She pulls you into a close, warm embrace, holding you tightly and securely.']" },
+          { "text": "[NARRATOR: 'She softly kisses your forehead and cheeks, her touch filled only with affection.']" },
+          { "text": "[NARRATOR: 'She gets you a cool glass of water and holds it for you if needed.']" },
+          { "text": "[NARRATOR: 'She gently rubs your lower back and asks softly if your ass feels okay or needs anything.']" },
+          { "text": "[NARRATOR: 'She holds your face tenderly in her hands, looking into your eyes with warmth and love.']" },
+          { "text": "[NARRATOR: 'She wraps a warm blanket around both of you, focusing on closeness and comfort.']" }
         ],
         "verbal": [
-          { "text": "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']" },
-          { "text": "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']" },
-          { "text": "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']" },
-          { "text": "[sincere] [NARRATOR: 'I love you. You are safe with me.']" },
-          { "text": "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']" }
+          { "text": "[softly] [BETH: 'Okay baby, scene's over. Come here, let me hold my husband.']" },
+          { "text": "[sincerely] [BETH: 'You took my cock so incredibly well. Thank you for trusting me with that, it was so hot watching you take it for me.']" },
+          { "text": "[reassuringly] [BETH: 'You know that was just our game, right? You're my strong, amazing man, always. Letting me do that doesn't change a thing.']" },
+          { "text": "[lovingly] [BETH: 'I love you more than anything. Are you okay right now? Tell me honestly how you're feeling.']" },
+          { "text": "[gently] [BETH: 'Does your ass hurt at all? Be honest. Let me know if you need anything, okay?']" },
+          { "text": "[impressed] [BETH: 'Seriously, you were amazing taking that punishment. I'm so proud of how much you trust me.']" },
+          { "text": "[warmly] [BETH: 'Let's just cuddle now. No roles, just us being close.']" },
+          { "text": "[admiringly] [BETH: 'Seeing you submit like that, trusting me completely... it's incredibly intimate and makes me love you even more.']" }
         ]
       }
     },
@@ -1408,10 +1461,10 @@
       { "type": "dialogue", "speaker": "NARRATOR", "text": "She holds it up." },
       { "type": "action", "tag": "mocking" },
       { "type": "action", "tag": "smirks" },
-      { "type": "draw", "from": "humiliation" },
+      { "type": "draw", "from": "setup_humiliation" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "She commands you into position." },
       { "type": "action", "tag": "commanding" },
-      { "type": "draw", "from": "instruction" },
+      { "type": "draw", "from": "position" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Your humiliation is her arousal." }
     ],
     "act2Core": [
@@ -1420,7 +1473,7 @@
       { "type": "dialogue", "speaker": "BETH", "text": "Time to open up for me." },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "She fucks you with the toy, her pace demanding. Your role is to take her cock. She'll ride you hard, using your body for her pleasure." },
       { "type": "action", "tag": "deliberate" },
-      { "type": "draw", "from": "instruction" },
+      { "type": "draw", "from": "intensity" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "She'll use her free hands on you." },
       { "type": "draw", "from": "actionsDomOnSubHandsOnCock" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Your whimpers are her encouragement." },
@@ -1941,15 +1994,15 @@
     "imagePlaceholder": "female_punishment_01.jpg",
     "concept": "A cold, objectifying punishment where Beth's only purpose is to serve as a mindless receptacle for Josh's cum, with her pleasure being completely disregarded.",
     "commandLibrary": {
-      "instruction": [
-        { "text": "[coldly] [JOSH: 'You have one purpose. Fulfill it.']" },
-        { "text": "[coldly] [JOSH: 'Don't think. Just serve. Open your mouth.']" },
-        { "text": "[coldly] [JOSH: 'Your pleasure is not on the agenda. Only my release matters.']" },
-        { "text": "[coldly] [JOSH: 'Take my cum. That is your only job tonight.']" },
-        { "text": "[coldly] [JOSH: 'You are a tool to be used. Act like it.']" },
-        { "text": "[coldly] [JOSH: 'On your knees, cunt. It''s time to pay for losing.']" },
-        { "text": "[coldly] [JOSH: 'You will swallow every drop. Nothing is to be wasted.']" },
-        { "text": "[coldly] [JOSH: 'Look me in the eye while you do it. I want to see your shame.']" }
+      "positioning": [
+        { "text": "[coldly] [JOSH: 'Knees wide. Hands behind your back. Present that mouth.']" },
+        { "text": "[coldly] [JOSH: 'Face down, ass up. Turn your head and open your mouth for me.']" },
+        { "text": "[coldly] [JOSH: 'Lie on your back. Legs spread. Head tilted back, mouth open like the receptacle you are.']" },
+        { "text": "[coldly] [JOSH: 'Against the wall. Hands flat against it. Turn your head towards me and open wide.']" },
+        { "text": "[coldly] [JOSH: 'Kneel, but sit back on your heels. Crawl closer. Mouth ready.']" },
+        { "text": "[coldly] [JOSH: 'Get on all fours facing away from me. Now look back over your shoulder, mouth open and waiting.']" },
+        { "text": "[coldly] [JOSH: 'Lie on your side facing me. Curl up slightly. Open that worthless mouth.']" },
+        { "text": "[coldly] [JOSH: 'Just kneel there. Head bowed slightly. Eyes closed. Mouth open. Wait for it.']" }
       ],
       "humiliation": [
         { "text": "[flatly] [JOSH: 'You are a hole. Nothing more. A warm place to dump my load.']" },
@@ -1980,6 +2033,16 @@
         { "text": "[NARRATOR: 'Use one hand to hold your hair back, the other on his leg for stability, like a professional.']" },
         { "text": "[NARRATOR: 'Swallow, then look up at him, awaiting your next command.']" },
         { "text": "[NARRATOR: 'Gag on his cock deliberately, showing him how much you're taking for him.']" }
+      ],
+      "climax_instruction": [
+        { "text": "[coldly] [JOSH: 'Mouth. Open it wider. You will take my load down your throat.']" },
+        { "text": "[flatly] [JOSH: 'Present that cunt. Spread your legs. It serves its purpose now.']" },
+        { "text": "[commanding] [JOSH: 'Roll over. Ass up. I will use your back hole for my release.']" },
+        { "text": "[objectifying] [JOSH: 'Whichever hole I choose, you will take it without hesitation. Understand?']" },
+        { "text": "[deadpan] [JOSH: 'Throat. Relax it completely. Do not gag on my release.']" },
+        { "text": "[coldly] [JOSH: 'Prepare your cunt. I require a wet, usable hole immediately.']" },
+        { "text": "[flatly] [JOSH: 'Your tight little asshole seems fitting for this punishment. Assume the position.']" },
+        { "text": "[commanding] [JOSH: 'Hold still. It doesn't matter which hole. Your only job is to receive my cum.']" }
       ],
       "actionsDomOnSubHandsOnPussy": [
         { "text": "[NARRATOR: 'Plunge two fingers deep inside her cunt and finger-fuck her, not for her pleasure, but to make her wet for you.']" },
@@ -2023,7 +2086,7 @@
     "act1Setup": [
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Beth lost. Her punishment is to serve a single, degrading purpose. You are 'The User,' she is 'The Object.' Your tone is cold, your words are simple commands." },
       { "type": "action", "tag": "coldly" },
-      { "type": "dialogue", "speaker": "JOSH", "text": "You lost. On your knees." },
+      { "type": "dialogue", "speaker": "JOSH", "text": "You lost. Now you submit. Prepare for punishment." },
       { "type": "draw", "from": "instruction" },
       { "type": "dialogue", "speaker": "NARRATOR", "text": "Once she is in position, you deliver the core of her punishment." },
       { "type": "action", "tag": "flatly" },

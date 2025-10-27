@@ -5,29 +5,30 @@ STORY: male_reward_01 - The Trespasser's Toll
 --- Dialogue Lines by Act ---
 
   ## act1Setup:
-    male_reward_01_act1Setup_0_NARRATOR.mp3: "You won the wager, and now you claim your prize. You find her 'trespassing' in a vulnerable part of your home. She tries to run, but you are the predator. You corner her against a wall, your voice a low growl."
-    male_reward_01_act1Setup_3_NARRATOR.mp3: "Her struggling only makes you harder as you bind her hands."
-    male_reward_01_act1Setup_5_NARRATOR.mp3: "She is now your captive."
+    male_reward_01_act1Setup_0_NARRATOR.mp3: "The wager is won. Time to collect. You find her 'trespassing' where she shouldn't be. She startles, tries to run, but you move faster, cornering her against the wall. Your voice drops to a low, possessive growl."
+    male_reward_01_act1Setup_3_NARRATOR.mp3: "Her struggling only fuels your arousal as you bind her wrists firmly behind her back."
+    male_reward_01_act1Setup_5_NARRATOR.mp3: "She is Bound and claimed. Utterly helpless before you now."
 
   ## act2Core:
-    male_reward_01_act2Core_0_NARRATOR.mp3: "You drag your prize to a spot of your choosing and rip her shirt open."
-    male_reward_01_act2Core_3_NARRATOR.mp3: "You throw her down, bending her over."
-    male_reward_01_act2Core_5_JOSH.mp3: "This is my land. This is my house. And now, this cunt is mine too."
-    male_reward_01_act2Core_6_NARRATOR.mp3: "You fuck her with a raw, animalistic intensity."
-    male_reward_01_act2Core_8_NARRATOR.mp3: "You use her for your pleasure."
-    male_reward_01_act2Core_10_NARRATOR.mp3: "As she gets close, you command her climax."
+    male_reward_01_act2Core_0_NARRATOR.mp3: "You drag your prize where you want her, then rip her shirt open, exposing skin."
+    male_reward_01_act2Core_2_JOSH.mp3: "This is my land. This is my house. And now, this cunt is mine too."
+    male_reward_01_act2Core_5_NARRATOR.mp3: "With rough hands, you force her body into the exact position you commanded."
+    male_reward_01_act2Core_6_NARRATOR.mp3: "You fuck her with a raw, animal intensity, taking what's yours."
+    male_reward_01_act2Core_8_NARRATOR.mp3: "You use her body for your pleasure."
+    male_reward_01_act2Core_10_NARRATOR.mp3: "Perhaps adding another layer to her violation..."
+    male_reward_01_act2Core_12_NARRATOR.mp3: "As she nears the edge, trembling, you seize control, using deliberate, powerful thrusts of your cock to force her climax while you command it."
 
   ## act3Aftermath:
-    male_reward_01_act3Aftermath_0_NARRATOR.mp3: "You take your own orgasm, cumming deep inside her or all over her back."
-    male_reward_01_act3Aftermath_2_NARRATOR.mp3: "Do not release her immediately. Hold her down for a full minute, letting her feel your ownership."
-    male_reward_01_act3Aftermath_5_NARRATOR.mp3: "Your final line, whispered harshly in her ear, is simple:"
+    male_reward_01_act3Aftermath_0_NARRATOR.mp3: "Finally, you take your own powerful orgasm, roaring as you flood her womb or coat her back."
+    male_reward_01_act3Aftermath_2_NARRATOR.mp3: "Don't release her yet. Stay inside, or keep her pinned for a full minute. Let her feel the weight of your ownership, the proof of your claim."
+    male_reward_01_act3Aftermath_5_NARRATOR.mp3: "Leaning close, your final line is a harsh whisper against her ear:"
     male_reward_01_act3Aftermath_7_JOSH.mp3: "The toll is paid."
-    male_reward_01_act3Aftermath_8_NARRATOR.mp3: "You then untie her, and the scene ends."
+    male_reward_01_act3Aftermath_8_NARRATOR.mp3: "You then slowly untie her wrists. The scene ends."
 
   ## aftercareScript:
-    male_reward_01_aftercareScript_0_NARRATOR.mp3: "After the intensity of the scene, it's crucial to re-establish connection. Hardcoded instruction:"
-    male_reward_01_aftercareScript_2_NARRATOR.mp3: "Gently turn her over, pull her close, and hold her. Your tone must be soft and loving."
-    male_reward_01_aftercareScript_4_NARRATOR.mp3: "Provide gentle, reassuring touch."
+    male_reward_01_aftercareScript_0_NARRATOR.mp3: "After such intensity, grounding yourselves and reconnecting is vital. Hardcoded instruction:"
+    male_reward_01_aftercareScript_2_NARRATOR.mp3: "Gently turn her over. Pull her close, hold her securely. Your voice must shift entirely now – soft, warm, loving."
+    male_reward_01_aftercareScript_4_NARRATOR.mp3: "Offer gentle, reassuring touch – stroking her hair, holding her hand, simple closeness."
 
 
 --- Command Library ---
@@ -41,6 +42,26 @@ STORY: male_reward_01 - The Trespasser's Toll
     male_reward_01_lib_humiliation_5.mp3: "[low growl] [JOSH: 'Every sound you make is just you admitting you were begging to be caught.']"
     male_reward_01_lib_humiliation_6.mp3: "[low growl] [JOSH: 'This is what happens to thieves. They get taken, and they get used.']"
     male_reward_01_lib_humiliation_7.mp3: "[low growl] [JOSH: 'I'm not just going to fuck your body. I'm going to fuck your mind until you forget who you were before you trespassed.']"
+
+  ## instruction_climax:
+    male_reward_01_lib_instruction_climax_0.mp3: "[commanding] [JOSH: 'Cum for me now, trespasser! Show me how you break!']"
+    male_reward_01_lib_instruction_climax_1.mp3: "[shouting] [JOSH: 'That's it! Shatter for me! Give me that orgasm!']"
+    male_reward_01_lib_instruction_climax_2.mp3: "[primal] [JOSH: 'Let go! Cum all over my cock right fucking now!']"
+    male_reward_01_lib_instruction_climax_3.mp3: "[dominant] [JOSH: 'I command you to climax! Drench me in your release!']"
+    male_reward_01_lib_instruction_climax_4.mp3: "[possessive] [JOSH: 'Your orgasm belongs to me! Take it now! Scream!']"
+    male_reward_01_lib_instruction_climax_5.mp3: "[guttural] [JOSH: 'Break apart! Let me feel you convulse around me as you cum!']"
+    male_reward_01_lib_instruction_climax_6.mp3: "[imperious] [JOSH: 'The toll includes your climax! Pay up! Cum!']"
+    male_reward_01_lib_instruction_climax_7.mp3: "[cruel] [JOSH: 'Fall apart like the broken little thing you are! Cum for your owner!']"
+
+  ## instruction_force_position:
+    male_reward_01_lib_instruction_force_position_0.mp3: "[primal] [JOSH: 'Get on that bed, face down! Ass up high for me!']"
+    male_reward_01_lib_instruction_force_position_1.mp3: "[commanding] [JOSH: 'Against the wall! Hands flat, legs spread! Show me what I've captured!']"
+    male_reward_01_lib_instruction_force_position_2.mp3: "[dominant] [JOSH: 'On your back! Now lift those legs and pull your knees to your chest! Open wide for your owner!']"
+    male_reward_01_lib_instruction_force_position_3.mp3: "[forceful] [JOSH: 'Over the table! Bend deep! I want that cunt presented perfectly!']"
+    male_reward_01_lib_instruction_force_position_4.mp3: "[growling] [JOSH: 'Down on all fours like the animal you are! Crawl to me!']"
+    male_reward_01_lib_instruction_force_position_5.mp3: "[possessive] [JOSH: 'Lie on your side, curl up just enough so I can take you from behind.']"
+    male_reward_01_lib_instruction_force_position_6.mp3: "[demanding] [JOSH: 'Kneel! Head down on the floor! Ass up high! Show me your submission!']"
+    male_reward_01_lib_instruction_force_position_7.mp3: "[cruel] [JOSH: 'Pin yourself against that doorframe! Spread 'em! Let me see everything!']"
 
   ## praise:
     male_reward_01_lib_praise_0.mp3: "[possessive] [JOSH: 'Good girl. You take a fucking like you were born for it.']"
@@ -68,7 +89,7 @@ STORY: male_reward_01 - The Trespasser's Toll
     male_reward_01_lib_actionsDomOnSubHandsOnBody_2.mp3: "[NARRATOR: 'Slap her ass hard, leaving a stinging red handprint.']"
     male_reward_01_lib_actionsDomOnSubHandsOnBody_3.mp3: "[NARRATOR: 'Wrap your hand around her throat, not to choke, but as a firm reminder of your absolute control.']"
     male_reward_01_lib_actionsDomOnSubHandsOnBody_4.mp3: "[NARRATOR: 'Pin both of her wrists above her head with one of your hands, leaving her completely helpless.']"
-    male_reward_01_lib_actionsDomOnSubHandsOnBody_5.mp3: "[NARRATOR: 'Bite her shoulder, hard enough to leave a mark. A brand of your ownership.']"
+    male_reward_01_lib_actionsDomOnSubHandsOnBody_5.mp3: "[NARRATOR: 'Grip her shoulder forcefully, digging your fingers in to leave deep marks. A brand of your ownership.']"
     male_reward_01_lib_actionsDomOnSubHandsOnBody_6.mp3: "[NARRATOR: 'Force two fingers into her mouth to silence her protests, making her suck on them.']"
     male_reward_01_lib_actionsDomOnSubHandsOnBody_7.mp3: "[NARRATOR: 'Slowly trace a single finger down her spine, making her shiver in anticipation before you take her.']"
 
@@ -86,7 +107,7 @@ STORY: male_reward_01 - The Trespasser's Toll
   ## kinkActions:
     ### for_her:
       male_reward_01_lib_kinkActions_for_her_0.mp3: "[NARRATOR: 'Hold her down and fuck her with a brutal, relentless rhythm.']"
-      male_reward_01_lib_kinkActions_for_her_1.mp3: "[NARRATOR: 'Spit in her mouth before you fuck her, marking her as yours.']"
+      male_reward_01_lib_kinkActions_for_her_1.mp3: "[NARRATOR: 'Spit directly onto her presented ass before you shove your cock inside her, marking your territory like an animal.']"
       male_reward_01_lib_kinkActions_for_her_2.mp3: "[NARRATOR: 'Force her to her knees and use her mouth first. A proper claiming starts with the throat.']"
       male_reward_01_lib_kinkActions_for_her_3.mp3: "[NARRATOR: 'After fucking her cunt, immediately pull out and roughly fuck her ass. Claim every hole on your property.']"
       male_reward_01_lib_kinkActions_for_her_4.mp3: "[NARRATOR: 'Lift one of her legs up onto your shoulder, forcing her open for a deeper, more punishing angle.']"
@@ -96,17 +117,23 @@ STORY: male_reward_01 - The Trespasser's Toll
 
   ## aftercare:
     ### physical:
-      male_reward_01_lib_aftercare_physical_0.mp3: "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']"
-      male_reward_01_lib_aftercare_physical_1.mp3: "[NARRATOR: 'Hold them close and stroke their hair.']"
-      male_reward_01_lib_aftercare_physical_2.mp3: "[NARRATOR: 'Wrap them in a warm blanket.']"
-      male_reward_01_lib_aftercare_physical_3.mp3: "[NARRATOR: 'Give them a gentle, loving massage.']"
-      male_reward_01_lib_aftercare_physical_4.mp3: "[NARRATOR: 'Get them a glass of water.']"
+      male_reward_01_lib_aftercare_physical_0.mp3: "[NARRATOR: 'Gently cradle her face in your hands, making soft eye contact.']"
+      male_reward_01_lib_aftercare_physical_1.mp3: "[NARRATOR: 'Slowly massage her wrists where they were bound, offering comfort.']"
+      male_reward_01_lib_aftercare_physical_2.mp3: "[NARRATOR: 'Pull her fully against your chest, wrapping your arms securely around her.']"
+      male_reward_01_lib_aftercare_physical_3.mp3: "[NARRATOR: 'Softly kiss her forehead, shoulders, anywhere that isn't overtly sexual.']"
+      male_reward_01_lib_aftercare_physical_4.mp3: "[NARRATOR: 'Gently stroke her back or hair as you hold her close.']"
+      male_reward_01_lib_aftercare_physical_5.mp3: "[NARRATOR: 'Offer her a sip of water, holding the glass for her if she wants.']"
+      male_reward_01_lib_aftercare_physical_6.mp3: "[NARRATOR: 'Wipe away any tears gently with your thumb.']"
+      male_reward_01_lib_aftercare_physical_7.mp3: "[NARRATOR: 'Just hold her quietly for a minute, letting your heartbeats sync.']"
     ### verbal:
-      male_reward_01_lib_aftercare_verbal_0.mp3: "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']"
-      male_reward_01_lib_aftercare_verbal_1.mp3: "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']"
-      male_reward_01_lib_aftercare_verbal_2.mp3: "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']"
-      male_reward_01_lib_aftercare_verbal_3.mp3: "[sincere] [NARRATOR: 'I love you. You are safe with me.']"
-      male_reward_01_lib_aftercare_verbal_4.mp3: "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']"
+      male_reward_01_lib_aftercare_verbal_0.mp3: "[softly] [JOSH: 'It's over now, baby. It was just a game. You're safe right here with me.']"
+      male_reward_01_lib_aftercare_verbal_1.mp3: "[lovingly] [JOSH: 'You were absolutely incredible. Thank you for trusting me like that, letting me explore that side.']"
+      male_reward_01_lib_aftercare_verbal_2.mp3: "[reassuringly] [JOSH: 'That was intense, I know. How are you feeling right now? Talk to me.']"
+      male_reward_01_lib_aftercare_verbal_3.mp3: "[warmly] [JOSH: 'Seeing you fight and then give in... god, it was so incredibly hot. You played your part perfectly.']"
+      male_reward_01_lib_aftercare_verbal_4.mp3: "[sincerely] [JOSH: 'I love you so much. You know that predator isn't really me, right? It's just a role we play.']"
+      male_reward_01_lib_aftercare_verbal_5.mp3: "[gently] [JOSH: 'Are you sore anywhere? Did I get too rough? Tell me honestly.']"
+      male_reward_01_lib_aftercare_verbal_6.mp3: "[admiringly] [JOSH: 'Your strength in letting go like that... it's amazing. You're amazing.']"
+      male_reward_01_lib_aftercare_verbal_7.mp3: "[tenderly] [JOSH: 'Let's just stay like this for a bit. Just us. No roles, just closeness.']"
 
 
 
@@ -561,44 +588,36 @@ STORY: female_reward_01_audio_ref - The Harem Queen's Due
 --- Dialogue Lines by Act ---
 
   ## act1Setup:
-    female_reward_01_audio_ref_act1Setup_0_NARRATOR.mp3: "You lost the wager, and now you must serve your Queen. She takes her throne on the bed, propped by pillows. Your first task is to present the 'harem'. Her first command is simple:"
-    female_reward_01_audio_ref_act1Setup_2_BETH.mp3: "Prepare your Queen."
-    female_reward_01_audio_ref_act1Setup_3_NARRATOR.mp3: "You must perform dedicated oral worship until she deems herself ready."
-    female_reward_01_audio_ref_act1Setup_5_NARRATOR.mp3: "Your service will be judged."
+    female_reward_01_audio_ref_act1Setup_0_NARRATOR.mp3: "You lost the wager, and now you must serve your Queen. She takes her throne on the bed, propped by pillows. Your first task is to present the 'harem'. Her first command is simple:" * (exists)
+    female_reward_01_audio_ref_act1Setup_2_BETH.mp3: "My royal passage must be readied for my guests. Attend to your Queen's pleasure first." * (exists)
+    female_reward_01_audio_ref_act1Setup_3_NARRATOR.mp3: "You must perform dedicated oral worship until she deems herself ready." * (exists)
+    female_reward_01_audio_ref_act1Setup_7_NARRATOR.mp3: "Your service will be judged."
 
   ## act2Core:
-    female_reward_01_audio_ref_act2Core_0_NARRATOR.mp3: "Once she is satisfied, she commands you to bring the first 'stud.' You will skillfully use it on her."
-    female_reward_01_audio_ref_act2Core_3_NARRATOR.mp3: "After a few minutes, she will command you to bring the second, forcing you to manage two dildos at once."
-    female_reward_01_audio_ref_act2Core_6_NARRATOR.mp3: "Your own pleasure is irrelevant. As you work, she will offer feedback."
+    female_reward_01_audio_ref_act2Core_0_NARRATOR.mp3: "Once she is satisfied, she commands you to bring the first 'stud.' You will skillfully use it on her." * (exists)
+    female_reward_01_audio_ref_act2Core_3_NARRATOR.mp3: "After a few minutes, she will command you to bring the second, forcing you to manage two dildos at once." * (exists)
+    female_reward_01_audio_ref_act2Core_6_NARRATOR.mp3: "Your own pleasure is irrelevant. As you work, she will offer feedback." * (exists)
 
   ## act3Aftermath:
-    female_reward_01_audio_ref_act3Aftermath_0_NARRATOR.mp3: "Your Queen will guide the intensity, commanding you faster and deeper until she is on the brink. Your final task is to give her a powerful, hands-free orgasm using only the toys."
-    female_reward_01_audio_ref_act3Aftermath_3_NARRATOR.mp3: "After her climax, her final command will determine your fate: she may command you to clean her and the toys with your mouth, or she may grant you a merciful, swift release."
+    female_reward_01_audio_ref_act3Aftermath_0_NARRATOR.mp3: "Your Queen will guide the intensity, commanding you faster and deeper until she is on the brink. Your final task is to give her a powerful, hands-free orgasm using only the toys." * (exists)
+    female_reward_01_audio_ref_act3Aftermath_3_NARRATOR.mp3: "After her climax, her final command will determine your fate: she may command you to clean her and the toys with your mouth, or she may grant you a merciful, swift release." * (exists)
 
   ## aftercareScript:
-    female_reward_01_audio_ref_aftercareScript_0_NARRATOR.mp3: "The roleplay is over. Hardcoded instruction:"
-    female_reward_01_audio_ref_aftercareScript_2_NARRATOR.mp3: "After the scene, she must drop the 'Queen' persona. It is crucial for her to pull you up from your submissive position and into an equal embrace, reassuring you of your place as her husband."
+    female_reward_01_audio_ref_aftercareScript_0_NARRATOR.mp3: "The roleplay is over. Hardcoded instruction:" * (exists)
+    female_reward_01_audio_ref_aftercareScript_2_NARRATOR.mp3: "After the scene, she must drop the 'Queen' persona. It is crucial for her to pull you up from your submissive position and into an equal embrace, reassuring you of your place as her husband." * (exists)
 
 
 --- Command Library ---
 
   ## instruction:
     female_reward_01_audio_ref_lib_instruction_0.mp3: "[evaluating] [BETH: 'Hmm... adequate, eunuch, but your Queen requires perfection. More pressure.']"
-    female_reward_01_audio_ref_lib_instruction_1.mp3: "[impatiently] [BETH: 'Is that truly the best your tongue can do? My harem studs offer more vigor. Try again.']"
+    female_reward_01_audio_ref_lib_instruction_1.mp3: "[impatiently] [BETH: 'Is that truly the best your tongue can do? My harem of studs offer more vigor. Try again.']"
     female_reward_01_audio_ref_lib_instruction_2.mp3: "[pleased] [BETH: 'Ah, yes... there. You've found the spot. Focus your worship there, precisely.']"
     female_reward_01_audio_ref_lib_instruction_3.mp3: "[demanding] [BETH: 'Faster now. Your Queen grows eager. Make me ready for my guests.']"
-    female_reward_01_audio_ref_lib_instruction_4.mp3: "[satisfied] [BETH: 'Your tongue shows promise... bury it deep within my cunt. That's it... now worship *all* of me with that tongue. Leave no part ignored.']"
+    female_reward_01_audio_ref_lib_instruction_4.mp3: "[satisfied] [BETH: 'Your tongue shows promise... bury it deep within my cunt. That's it... now worship all of me with that tongue. Leave no part ignored.']"
     female_reward_01_audio_ref_lib_instruction_5.mp3: "[commanding] [BETH: 'Now attend to my clit directly. It requires your absolute devotion before the others arrive.']"
     female_reward_01_audio_ref_lib_instruction_6.mp3: "[breathless] [BETH: 'Yes... you have almost prepared the royal passage. Just a little more...']"
     female_reward_01_audio_ref_lib_instruction_7.mp3: "[regal] [BETH: 'Enough. Your service is... acceptable. You have made your Queen ready. Now, bring me my first stud.']"
-    female_reward_01_audio_ref_lib_instruction_8.mp3: "[shouts] [BETH: 'Faster, eunuch! Drive them harder! Push your Queen over the edge!']"
-    female_reward_01_audio_ref_lib_instruction_9.mp3: "[demanding] [BETH: 'Deeper! I need to feel them grinding inside me! Make me cum now!']"
-    female_reward_01_audio_ref_lib_instruction_10.mp3: "[gasping] [BETH: 'Yes! Just like that! Don't stop! Only the toys! Bring me my release!']"
-    female_reward_01_audio_ref_lib_instruction_11.mp3: "[breathless] [BETH: 'I'm so close! Keep that rhythm perfect! Make your Queen shatter!']"
-    female_reward_01_audio_ref_lib_instruction_12.mp3: "[commanding] [BETH: 'Harder and faster now! Use those cocks like you were born for it! Give me everything!']"
-    female_reward_01_audio_ref_lib_instruction_13.mp3: "[impressed] [BETH: 'Such skill with my toys! Now prove your ultimate worth! Finish me!']"
-    female_reward_01_audio_ref_lib_instruction_14.mp3: "[imperious] [BETH: 'I am on the precipice! Your final task is simple: MAKE. ME. CUM.']"
-    female_reward_01_audio_ref_lib_instruction_15.mp3: "[overwhelmed] [BETH: 'Don't slow down! Drown me in pleasure! Make the orgasm take me!']"
 
   ## instructiona:
     female_reward_01_audio_ref_lib_instructiona_0.mp3: "[shouts] [BETH: 'Faster, eunuch! Drive them harder! Push your Queen over the edge!']"
@@ -611,117 +630,106 @@ STORY: female_reward_01_audio_ref - The Harem Queen's Due
     female_reward_01_audio_ref_lib_instructiona_7.mp3: "[overwhelmed] [BETH: 'Don't slow down! Drown me in pleasure! Make the orgasm take me!']"
 
   ## humiliation:
-    female_reward_01_audio_ref_lib_humiliation_0.mp3: "[dismissive] [BETH: 'Look at you, my pathetic little eunuch, preparing me for real cocks.']"
-    female_reward_01_audio_ref_lib_humiliation_1.mp3: "[dismissive] [BETH: 'You're not even worthy to look at me. Keep your eyes down and your tongue busy.']"
-    female_reward_01_audio_ref_lib_humiliation_2.mp3: "[dismissive] [BETH: 'Your cock is useless to me tonight. But your hands and mouth will suffice as tools.']"
-    female_reward_01_audio_ref_lib_humiliation_3.mp3: "[dismissive] [BETH: 'You exist only to facilitate my pleasure. Remember your place.']"
-    female_reward_01_audio_ref_lib_humiliation_4.mp3: "[dismissive] [BETH: 'Hurry up. My lovers are waiting, and your pathetic service is slow.']"
-    female_reward_01_audio_ref_lib_humiliation_5.mp3: "[dismissive] [BETH: 'All these cocks are for me. None are for you. You only get to watch and help.']"
-    female_reward_01_audio_ref_lib_humiliation_6.mp3: "[dismissive] [BETH: 'You're just the stagehand for my pleasure. The actors will be here soon.']"
-    female_reward_01_audio_ref_lib_humiliation_7.mp3: "[dismissive] [BETH: 'While I get fucked by my harem, you will be locked in chastity. A true eunuch.']"
+    female_reward_01_audio_ref_lib_humiliation_0.mp3: "[dismissive] [BETH: 'Look at you, my pathetic little eunuch, preparing me for real cocks.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_1.mp3: "[dismissive] [BETH: 'You're not even worthy to look at me. Keep your eyes down and your tongue busy.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_2.mp3: "[dismissive] [BETH: 'Your cock is useless to me tonight. But your hands and mouth will suffice as tools.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_3.mp3: "[dismissive] [BETH: 'You exist only to facilitate my pleasure. Remember your place.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_4.mp3: "[dismissive] [BETH: 'Hurry up. My lovers are waiting, and your pathetic service is slow.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_5.mp3: "[dismissive] [BETH: 'All these cocks are for me. None are for you. You only get to watch and help.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_6.mp3: "[dismissive] [BETH: 'You're just the stagehand for my pleasure. The actors will be here soon.']" * (exists)
+    female_reward_01_audio_ref_lib_humiliation_7.mp3: "[dismissive] [BETH: 'While I get fucked by my harem, you will be locked in chastity. A true eunuch.']" * (exists)
 
   ## praise:
-    female_reward_01_audio_ref_lib_praise_0.mp3: "[pleased] [BETH: 'Mmm, yes. You are a well-trained servant.']"
-    female_reward_01_audio_ref_lib_praise_1.mp3: "[pleased] [BETH: 'Good boy. You know exactly how to please your Queen before her guests arrive.']"
-    female_reward_01_audio_ref_lib_praise_2.mp3: "[pleased] [BETH: 'Your service is... adequate. You may be rewarded by cleaning up the mess later.']"
-    female_reward_01_audio_ref_lib_praise_3.mp3: "[pleased] [BETH: 'Look how you make me feel. You are a useful tool for my pleasure.']"
-    female_reward_01_audio_ref_lib_praise_4.mp3: "[pleased] [BETH: 'For a lowly eunuch, your tongue is surprisingly skilled.']"
-    female_reward_01_audio_ref_lib_praise_5.mp3: "[pleased] [BETH: 'You handle my harem so well. Such a good manager of my cocks.']"
-    female_reward_01_audio_ref_lib_praise_6.mp3: "[pleased] [BETH: 'You gave me a wonderful orgasm. The harem is pleased.']"
-    female_reward_01_audio_ref_lib_praise_7.mp3: "[pleased] [BETH: 'Your absolute devotion to my pleasure is your most redeeming quality.']"
+    female_reward_01_audio_ref_lib_praise_0.mp3: "[pleased] [BETH: 'Mmm, yes... skillfully handling both my studs. You are a well-trained servant.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_1.mp3: "[impressed] [BETH: 'Two cocks at once... you manage my harem beautifully, eunuch. Keep that rhythm.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_2.mp3: "[satisfied] [BETH: 'Your service managing these toys is... surprisingly adequate. Perhaps you're not entirely useless.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_3.mp3: "[gasping] [BETH: 'Look how full you make me feel with both! You are indeed a useful tool for wielding my pleasure.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_4.mp3: "[satisfied] [BETH: 'Yes... using both hands, coordinating their thrusts... you truly are the hands of my pleasure tonight.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_5.mp3: "[pleased] [BETH: 'You handle my chosen cocks so well together. Such a good manager for your Queen.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_6.mp3: "[breathless] [BETH: 'Feeling both studs inside me... ahh, you orchestrate my pleasure perfectly. Don't stop.']" * (exists)
+    female_reward_01_audio_ref_lib_praise_7.mp3: "[pleased] [BETH: 'Your absolute devotion to fulfilling my desires, even with these toys, is commendable. Keep going.']" * (exists)
 
   ## actionsSubOnDomMouthOnPussy:
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_0.mp3: "[NARRATOR: 'Lick her clit in slow, lazy circles until she starts to squirm in anticipation.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_1.mp3: "[NARRATOR: 'Suck her clit into your mouth and flick it with your tongue, preparing her for the harem.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_2.mp3: "[NARRATOR: 'Plunge your tongue deep inside her cunt, getting her wet and ready.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_3.mp3: "[NARRATOR: 'Use your tongue to trace the lips of her cunt, a delicate act of worship.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_4.mp3: "[NARRATOR: 'Alternate between licking her clit and her asshole, serving every part of your Queen.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_5.mp3: "[NARRATOR: 'Spell out 'Queen' on her cunt with the tip of your tongue.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_6.mp3: "[NARRATOR: 'Bury your face in her pussy and refuse to come up for air until she commands it.']"
-    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_7.mp3: "[NARRATOR: 'Gently blow air onto her wet clit after licking it, sending shivers through her.']"
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_0.mp3: "[NARRATOR: 'Lick her clit in slow, lazy circles until she starts to squirm in anticipation.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_1.mp3: "[NARRATOR: 'Suck her clit into your mouth and flick it with your tongue, preparing her for the harem.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_2.mp3: "[NARRATOR: 'Plunge your tongue deep inside her cunt, getting her wet and ready.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_3.mp3: "[NARRATOR: 'Use your tongue to trace the lips of her cunt, a delicate act of worship.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_4.mp3: "[NARRATOR: 'Alternate between licking her clit and her asshole, serving every part of your Queen.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_5.mp3: "[NARRATOR: 'Spell out 'Queen' on her cunt with the tip of your tongue.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_6.mp3: "[NARRATOR: 'Bury your face in her pussy and refuse to come up for air until she commands it.']" * (exists)
+    female_reward_01_audio_ref_lib_actionsSubOnDomMouthOnPussy_7.mp3: "[NARRATOR: 'Gently blow air onto her wet clit after licking it, sending shivers through her.']" * (exists)
 
   ## toy_use:
-    ### choice_a:
-      female_reward_01_audio_ref_lib_toy_use_choice_a_0.mp3: "[regal] [BETH: 'Bring me my most reliable stud, The Average Size Dick. Use him to get my royal cunt ready for the others.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_1.mp3: "[demanding] [BETH: 'It is time for a true challenge. I want to feel The Big Cock stretching me open.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_2.mp3: "[dreamy] [BETH: 'My fantasy awaits. Fuck my pussy with The Big Unicorn; I want to feel his magical horn deep inside me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_3.mp3: "[primal] [BETH: 'I desire a more animalistic touch. Use The K9 on my cunt, and don't stop until you feel his knot pop.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_4.mp3: "[imperious] [BETH: 'Bring forth the champion of the harem. My royal pussy will conquer The Monster Dick tonight.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_5.mp3: "[playful] [BETH: 'Attend to my royal jewel. Use The Tiny Unicorn on my clit while the real studs prepare to enter.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_6.mp3: "[commanding] [BETH: 'My cunt feels empty. For now, you will plug it with the Small Purple Butt Plug.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_7.mp3: "[condescending] [BETH: 'The harem has been amusing, but now I desire the real thing. Eunuch, present your flesh. You may have the honor of fucking your Queen.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_8.mp3: "[authoritative] [BETH: 'My favorite stud needs his crown. Slide The Knot Sleeve over him and let me feel that royal knot filling my cunt.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_9.mp3: "[dismissive] [BETH: 'Before he enters my kingdom below, he must pay tribute above. Make me suck The Average Size Dick.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_10.mp3: "[impatiently] [BETH: 'My mouth is bored while you work. Punish it with The Big Cock.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_11.mp3: "[curious] [BETH: 'I want to taste a fantasy. Force The Big Unicorn's horn down my throat while you ready the next guest.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_12.mp3: "[demanding] [BETH: 'Make my mouth take The K9. I want to feel that animal knot against the back of my throat.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_13.mp3: "[regal] [BETH: 'Only the Queen's throat is worthy of The Monster Dick. Show him his place while you use another toy on me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_14.mp3: "[teasing] [BETH: 'My lips desire a small treat while the main course is served. Let me suckle on The Tiny Unicorn.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_15.mp3: "[mocking] [BETH: 'Your mouth looks empty. Put the Small Purple Butt Plug in it.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_16.mp3: "[amused] [BETH: 'I grow tired of these lifeless toys. Present your own pathetic little stud. My royal mouth will pass judgment on it.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_17.mp3: "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker. I want to feel its texture on my tongue while you fuck me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_18.mp3: "[commanding] [BETH: 'My back door requires a guest. Use The Average Size Dick to fill my ass while my cunt receives another.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_19.mp3: "[challenging] [BETH: 'My royal ass demands a true test. Stretch it open for me with The Big Cock.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_20.mp3: "[lustful] [BETH: 'I want a fantasy in both holes. Prepare my ass with The Big Unicorn's horn.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_21.mp3: "[primal] [BETH: 'My ass will claim the beast tonight. Make me take The K9's knot while you service my pussy.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_22.mp3: "[imperious] [BETH: 'The champion of the harem will conquer all my lands. My ass will now host The Monster Dick.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_23.mp3: "[playful] [BETH: 'A small guest for a tight space. Tease my asshole with The Tiny Unicorn while the main party is up front.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_24.mp3: "[authoritative] [BETH: 'Guard my back gate. You will plug my ass with the Small Purple Butt Plug before the primary fucking begins.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_25.mp3: "[dismissive] [BETH: 'My royal cunt is for the harem. Your flesh is only worthy of the servant's entrance. You may have the honor of fucking my ass.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_a_26.mp3: "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass. I want to feel every ridge of that knot stretching me.']"
-    ### choice_b:
-      female_reward_01_audio_ref_lib_toy_use_choice_b_0.mp3: "[regal] [BETH: 'Bring me my most reliable stud, The Average Size Dick. Use him to get my royal cunt ready for the others.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_1.mp3: "[demanding] [BETH: 'It is time for a true challenge. I want to feel The Big Cock stretching me open.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_2.mp3: "[dreamy] [BETH: 'My fantasy awaits. Fuck my pussy with The Big Unicorn; I want to feel his magical horn deep inside me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_3.mp3: "[primal] [BETH: 'I desire a more animalistic touch. Use The K9 on my cunt, and don't stop until you feel his knot pop.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_4.mp3: "[imperious] [BETH: 'Bring forth the champion of the harem. My royal pussy will conquer The Monster Dick tonight.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_5.mp3: "[playful] [BETH: 'Attend to my royal jewel. Use The Tiny Unicorn on my clit while the real studs prepare to enter.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_6.mp3: "[commanding] [BETH: 'My cunt feels empty. For now, you will plug it with the Small Purple Butt Plug.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_7.mp3: "[condescending] [BETH: 'The harem has been amusing, but now I desire the real thing. Eunuch, present your flesh. You may have the honor of fucking your Queen.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_8.mp3: "[authoritative] [BETH: 'My favorite stud needs his crown. Slide The Knot Sleeve over him and let me feel that royal knot filling my cunt.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_9.mp3: "[dismissive] [BETH: 'Before he enters my kingdom below, he must pay tribute above. Make me suck The Average Size Dick.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_10.mp3: "[impatiently] [BETH: 'My mouth is bored while you work. Punish it with The Big Cock.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_11.mp3: "[curious] [BETH: 'I want to taste a fantasy. Force The Big Unicorn's horn down my throat while you ready the next guest.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_12.mp3: "[demanding] [BETH: 'Make my mouth take The K9. I want to feel that animal knot against the back of my throat.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_13.mp3: "[regal] [BETH: 'Only the Queen's throat is worthy of The Monster Dick. Show him his place while you use another toy on me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_14.mp3: "[teasing] [BETH: 'My lips desire a small treat while the main course is served. Let me suckle on The Tiny Unicorn.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_15.mp3: "[mocking] [BETH: 'Your mouth looks empty. Put the Small Purple Butt Plug in it.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_16.mp3: "[amused] [BETH: 'I grow tired of these lifeless toys. Present your own pathetic little stud. My royal mouth will pass judgment on it.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_17.mp3: "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker. I want to feel its texture on my tongue while you fuck me.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_18.mp3: "[commanding] [BETH: 'My back door requires a guest. Use The Average Size Dick to fill my ass while my cunt receives another.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_19.mp3: "[challenging] [BETH: 'My royal ass demands a true test. Stretch it open for me with The Big Cock.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_20.mp3: "[lustful] [BETH: 'I want a fantasy in both holes. Prepare my ass with The Big Unicorn's horn.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_21.mp3: "[primal] [BETH: 'My ass will claim the beast tonight. Make me take The K9's knot while you service my pussy.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_22.mp3: "[imperious] [BETH: 'The champion of the harem will conquer all my lands. My ass will now host The Monster Dick.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_23.mp3: "[playful] [BETH: 'A small guest for a tight space. Tease my asshole with The Tiny Unicorn while the main party is up front.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_24.mp3: "[authoritative] [BETH: 'Guard my back gate. You will plug my ass with the Small Purple Butt Plug before the primary fucking begins.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_25.mp3: "[dismissive] [BETH: 'My royal cunt is for the harem. Your flesh is only worthy of the servant's entrance. You may have the honor of fucking my ass.']"
-      female_reward_01_audio_ref_lib_toy_use_choice_b_26.mp3: "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass. I want to feel every ridge of that knot stretching me.']"
-
-  ## kinkActions:
-    ### for_her:
-      female_reward_01_audio_ref_lib_kinkActions_for_her_0.mp3: "[NARRATOR: 'Use two dildos to double-stuff her pussy until she is overwhelmed by her harem.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_1.mp3: "[NARRATOR: 'Stuff one hole with a dildo while you use your mouth on her clit.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_2.mp3: "[NARRATOR: 'Force her to choose which two 'lovers' she wants inside her at the same time.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_3.mp3: "[NARRATOR: 'Make her hold the dildos inside her with her own muscles while you praise her strength.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_4.mp3: "[NARRATOR: 'Create a 'spit roast' by using one dildo in her cunt and another in your hand for her to suck.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_5.mp3: "[NARRATOR: 'Use the dildos to bring her to the edge, then stop and switch to a different 'lover'.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_6.mp3: "[NARRATOR: 'Arrange all the toys around her on the bed, creating the visual of a full harem waiting to serve her.']"
-      female_reward_01_audio_ref_lib_kinkActions_for_her_7.mp3: "[NARRATOR: 'Have her suck on one dildo while you use another on her, forcing her to pleasure her own 'harem'.']"
+    ### first_toy:
+      female_reward_01_audio_ref_lib_toy_use_first_toy_0.mp3: "[regal] [BETH: 'Bring me my most reliable stud, The Average Size Dick. He shall be the first to enter my royal cunt and prepare me for the others.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_1.mp3: "[demanding] [BETH: 'Enough waiting! It is time for a true challenge. Bring forth The Big Cock and stretch my pussy open first.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_2.mp3: "[dreamy] [BETH: 'My fantasy awaits. Let us begin with The Big Unicorn; fuck my pussy with him first. I want to feel his magical horn deep inside me.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_3.mp3: "[primal] [BETH: 'I desire a more animalistic opening. Bring The K9. Use him on my cunt first, and don't stop until you feel his knot pop.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_4.mp3: "[imperious] [BETH: 'Let the champion begin the festivities! My royal pussy will conquer The Monster Dick first tonight.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_5.mp3: "[playful] [BETH: 'Attend to my royal jewel first. Use The Tiny Unicorn on my clit to announce the arrival of the studs.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_6.mp3: "[commanding] [BETH: 'My cunt feels empty. We shall begin simply. Plug it with the Small Purple Butt Plug first.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_7.mp3: "[authoritative] [BETH: 'My favorite stud needs his crown to make his entrance. Slide The Knot Sleeve over him and let me be the first to feel that royal knot filling my cunt.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_8.mp3: "[condescending] [BETH: 'Perhaps we should start with something... familiar before the real harem arrives. Eunuch, present your flesh. You may have the first honor.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_9.mp3: "[dismissive] [BETH: 'Before he enters my kingdom below, he must pay tribute above. Make me suck The Average Size Dick.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_10.mp3: "[impatiently] [BETH: 'My mouth is bored while you work. Punish it with The Big Cock.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_11.mp3: "[curious] [BETH: 'I want to taste a fantasy. Force The Big Unicorn's horn down my throat while you ready the next guest.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_12.mp3: "[demanding] [BETH: 'Make my mouth take The K9. I want to feel that animal knot against the back of my throat.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_13.mp3: "[regal] [BETH: 'Only the Queen's throat is worthy of The Monster Dick. Show him his place while you use another toy on me.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_14.mp3: "[teasing] [BETH: 'My lips desire a small treat while the main course is served. Let me suckle on The Tiny Unicorn.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_15.mp3: "[mocking] [BETH: 'Your mouth looks empty. Put the Small Purple Butt Plug in it.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_16.mp3: "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker. I want to feel its texture on my tongue while you fuck me.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_17.mp3: "[amused] [BETH: 'I grow tired of these lifeless toys. Present your own pathetic little stud. My royal mouth will pass judgment on it.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_18.mp3: "[commanding] [BETH: 'My back door requires a guest. Use The Average Size Dick to fill my ass while my cunt receives another.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_19.mp3: "[challenging] [BETH: 'My royal ass demands a true test. Stretch it open for me with The Big Cock.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_20.mp3: "[lustful] [BETH: 'I want a fantasy in both holes. Prepare my ass with The Big Unicorn's horn.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_21.mp3: "[primal] [BETH: 'My ass will claim the beast tonight. Make me take The K9's knot while you service my pussy.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_22.mp3: "[imperious] [BETH: 'The champion of the harem will conquer all my lands. My ass will now host The Monster Dick.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_23.mp3: "[playful] [BETH: 'A small guest for a tight space. Tease my asshole with The Tiny Unicorn while the main party is up front.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_24.mp3: "[authoritative] [BETH: 'Guard my back gate. You will plug my ass with the Small Purple Butt Plug before the primary fucking begins.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_25.mp3: "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass. I want to feel every ridge of that knot stretching me.']"
+      female_reward_01_audio_ref_lib_toy_use_first_toy_26.mp3: "[dismissive] [BETH: 'My royal cunt is for the harem. Your flesh is only worthy of the servant's entrance. You may have the honor of fucking my ass.']"
+    ### second_toy:
+      female_reward_01_audio_ref_lib_toy_use_second_toy_0.mp3: "[regal] [BETH: 'Good. Now add my reliable stud, The Average Size Dick alongside him. Double-stuff your Queen.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_1.mp3: "[demanding] [BETH: 'I require more. Add The Big Cock next to the first. Stretch me completely.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_2.mp3: "[dreamy] [BETH: 'Bring in the second part of the fantasy. Add The Big Unicorn beside him; I want to feel both deep inside me.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_3.mp3: "[primal] [BETH: 'One beast is not enough. Add The K9 to my cunt now. Make me feel both knots simultaneously!']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_4.mp3: "[imperious] [BETH: 'The champion joins the fray! Add The Monster Dick. My royal pussy will conquer them both!']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_5.mp3: "[playful] [BETH: 'While he fills me, attend to my royal jewel as well. Add The Tiny Unicorn to my clit.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_6.mp3: "[commanding] [BETH: 'There is still space within my passage. Add the Small Purple Butt Plug alongside the first toy.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_7.mp3: "[condescending] [BETH: 'The first stud is lonely. Perhaps your flesh can join him now. Add your pathetic little cock.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_8.mp3: "[authoritative] [BETH: 'He needs his crown too. Slide The Knot Sleeve over the second stud and push him in beside the first. Make me feel both royal knots.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_9.mp3: "[dismissive] [BETH: 'While he works below, pay tribute above. Make me suck The Average Size Dick as well.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_10.mp3: "[impatiently] [BETH: 'My mouth grows idle. Punish it with The Big Cock while the first toy keeps fucking me.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_11.mp3: "[curious] [BETH: 'Let me taste the fantasy too. Force The Big Unicorn's horn down my throat while the other stud works.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_12.mp3: "[demanding] [BETH: 'My throat feels empty. Make my mouth take The K9 now. I want to feel that knot while I'm being filled.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_13.mp3: "[regal] [BETH: 'Only the Queen deserves such attention. While he fucks me, make my throat accept The Monster Dick.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_14.mp3: "[teasing] [BETH: 'My lips require amusement. Let me suckle on The Tiny Unicorn while he pounds away inside me.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_15.mp3: "[mocking] [BETH: 'Your mouth looks empty while your hands are busy. Put the Small Purple Butt Plug in it to keep it occupied.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_16.mp3: "[amused] [BETH: 'Distract me from this toy's efforts. Present your own pathetic little stud for my mouth's judgment.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_17.mp3: "[intrigued] [BETH: 'Use The Knot Sleeve as a stroker on my tongue while the first toy continues its work inside me.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_18.mp3: "[commanding] [BETH: 'My back door feels neglected. Use The Average Size Dick to fill my ass while my cunt receives the first guest.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_19.mp3: "[challenging] [BETH: 'My royal ass demands attention too. Stretch it open for me with The Big Cock while the first toy fucks my pussy.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_20.mp3: "[lustful] [BETH: 'I desire fantasy in both holes. Stretch my ass with The Big Unicorn's horn while the first stud claims my cunt.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_21.mp3: "[primal] [BETH: 'My ass will claim the second beast. Make me take The K9's knot back there while you service my front.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_22.mp3: "[imperious] [BETH: 'The champion claims all lands. Add The Monster Dick to my ass while the first toy holds my cunt.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_23.mp3: "[playful] [BETH: 'A second guest for the tight space. Tease my asshole with The Tiny Unicorn while the main party continues up front.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_24.mp3: "[authoritative] [BETH: 'Guard my back gate while the front is occupied. Plug my ass with the Small Purple Butt Plug now.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_25.mp3: "[dismissive] [BETH: 'My royal cunt is claimed. Your flesh is only worthy of the servant's entrance now. Fuck my ass while the first stud uses my pussy.']"
+      female_reward_01_audio_ref_lib_toy_use_second_toy_26.mp3: "[demanding] [BETH: 'Put The Knot Sleeve on and use it on my ass simultaneously. I want to feel every ridge stretching me while the first toy works.']"
 
   ## aftercare:
     ### physical:
-      female_reward_01_audio_ref_lib_aftercare_physical_0.mp3: "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']"
-      female_reward_01_audio_ref_lib_aftercare_physical_1.mp3: "[NARRATOR: 'Hold them close and stroke their hair.']"
-      female_reward_01_audio_ref_lib_aftercare_physical_2.mp3: "[NARRATOR: 'Wrap them in a warm blanket.']"
-      female_reward_01_audio_ref_lib_aftercare_physical_3.mp3: "[NARRATOR: 'Give them a gentle, loving massage.']"
-      female_reward_01_audio_ref_lib_aftercare_physical_4.mp3: "[NARRATOR: 'Get them a glass of water.']"
+      female_reward_01_audio_ref_lib_aftercare_physical_0.mp3: "[NARRATOR: 'She gently pulls you up from your kneeling position, guiding you onto the bed beside her.']"
+      female_reward_01_audio_ref_lib_aftercare_physical_1.mp3: "[NARRATOR: 'She wraps her arms around you, holding you close in a warm, equal embrace, dropping all regal posture.']"
+      female_reward_01_audio_ref_lib_aftercare_physical_2.mp3: "[NARRATOR: 'She softly kisses your forehead and cheeks, reassuring, non-sexual touch.']"
+      female_reward_01_audio_ref_lib_aftercare_physical_3.mp3: "[NARRATOR: 'She gently takes your hand, intertwining her fingers with yours.']"
+      female_reward_01_audio_ref_lib_aftercare_physical_4.mp3: "[NARRATOR: 'She strokes your back soothingly, letting you rest your head on her shoulder.']"
     ### verbal:
-      female_reward_01_audio_ref_lib_aftercare_verbal_0.mp3: "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']"
-      female_reward_01_audio_ref_lib_aftercare_verbal_1.mp3: "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']"
-      female_reward_01_audio_ref_lib_aftercare_verbal_2.mp3: "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']"
-      female_reward_01_audio_ref_lib_aftercare_verbal_3.mp3: "[sincere] [NARRATOR: 'I love you. You are safe with me.']"
-      female_reward_01_audio_ref_lib_aftercare_verbal_4.mp3: "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']"
+      female_reward_01_audio_ref_lib_aftercare_verbal_0.mp3: "[softly] [BETH: 'My Queen act is over, my love. You were absolutely incredible. Thank you for making that fantasy real for me.']"
+      female_reward_01_audio_ref_lib_aftercare_verbal_1.mp3: "[reassuringly] [BETH: 'You're not my eunuch, you're my amazing husband. Thank you for serving me so perfectly tonight.']"
+      female_reward_01_audio_ref_lib_aftercare_verbal_2.mp3: "[warmly] [BETH: 'It takes so much trust to do that for me, and I love you so much for it. You made me feel amazing.']"
+      female_reward_01_audio_ref_lib_aftercare_verbal_3.mp3: "[lovingly] [BETH: 'Come here. Let me hold my husband. You did everything right.']"
+      female_reward_01_audio_ref_lib_aftercare_verbal_4.mp3: "[sincerely] [BETH: 'That was intense and exactly what I wanted. Are you okay? Tell me how you're feeling.']"
 
 
 
@@ -1161,25 +1169,35 @@ STORY: male_punishment_01 - The Cunt's Toll
 
 --- Command Library ---
 
-  ## instruction:
-    male_punishment_01_lib_instruction_0.mp3: "[commanding] [BETH: 'Your ass is mine tonight. Prepare it for my cock.']"
-    male_punishment_01_lib_instruction_1.mp3: "[commanding] [BETH: 'I'm going to make you feel what it's like to be the girl. Now, present that hole.']"
-    male_punishment_01_lib_instruction_2.mp3: "[commanding] [BETH: 'Take my cock, you pathetic loser. All of it.']"
-    male_punishment_01_lib_instruction_3.mp3: "[commanding] [BETH: 'Don't fight it. You know you were made for this. Made to be my cunt.']"
-    male_punishment_01_lib_instruction_4.mp3: "[commanding] [BETH: 'Worship my strap-on before you take it. Lick it clean.']"
-    male_punishment_01_lib_instruction_5.mp3: "[commanding] [BETH: 'I want you to beg me to fuck your ass. I want to hear you plead for it.']"
-    male_punishment_01_lib_instruction_6.mp3: "[commanding] [BETH: 'You will look me in the eyes as I make you mine.']"
-    male_punishment_01_lib_instruction_7.mp3: "[commanding] [BETH: 'Clench for me. I want to feel that boy-pussy of yours grip my cock.']"
+  ## position:
+    male_punishment_01_lib_position_0.mp3: "[commanding] [BETH: 'On all fours. Now. Ass high in the air like the animal you are.']"
+    male_punishment_01_lib_position_1.mp3: "[commanding] [BETH: 'Get over my knee. Right now. Present that pathetic hole for its punishment.']"
+    male_punishment_01_lib_position_2.mp3: "[commanding] [BETH: 'Face down on the bed, ass pushed up towards me. Display the target clearly.']"
+    male_punishment_01_lib_position_3.mp3: "[commanding] [BETH: 'Lie on your back and pull your knees tight to your chest. Spread yourself wide open for me.']"
+    male_punishment_01_lib_position_4.mp3: "[commanding] [BETH: 'Bend over the edge of the bed. I want that ass elevated and perfectly presented for my cock.']"
+    male_punishment_01_lib_position_5.mp3: "[commanding] [BETH: 'Hands flat against the wall. Spread your legs wide and stick that ass out. Don't dare hide it from me.']"
+    male_punishment_01_lib_position_6.mp3: "[commanding] [BETH: 'Kneel on the floor, then bend forward until your face touches the ground. Offer that ass up in proper supplication.']"
+    male_punishment_01_lib_position_7.mp3: "[commanding] [BETH: 'Assume the position you hate the most. Show me exactly how much you'll endure to pay your debt tonight.']"
 
-  ## humiliation:
-    male_punishment_01_lib_humiliation_0.mp3: "[mocking] [BETH: 'Such a tight little cunt for me to use. You're better than a real girl.']"
-    male_punishment_01_lib_humiliation_1.mp3: "[mocking] [BETH: 'Listen to those pathetic whimpers. You love being my bitch, don't you?']"
-    male_punishment_01_lib_humiliation_2.mp3: "[mocking] [BETH: 'Who's the man now? That's right, it's me. And you're just the hole.']"
-    male_punishment_01_lib_humiliation_3.mp3: "[mocking] [BETH: 'I'm going to fuck you so hard you'll forget you even have a dick.']"
-    male_punishment_01_lib_humiliation_4.mp3: "[mocking] [BETH: 'Your ass is just another hole for me to use whenever I want.']"
-    male_punishment_01_lib_humiliation_5.mp3: "[mocking] [BETH: 'I bet you think about this all the time. Being forced to take a cock like a good sissy.']"
-    male_punishment_01_lib_humiliation_6.mp3: "[mocking] [BETH: 'Your punishment is my pleasure. The perfect arrangement.']"
-    male_punishment_01_lib_humiliation_7.mp3: "[mocking] [BETH: 'Every thrust is me reminding you that you lost. That you are beneath me.']"
+  ## intensity:
+    male_punishment_01_lib_intensity_0.mp3: "[commanding] [BETH: 'Take it. Every inch. Don't you dare push back against my cock.']"
+    male_punishment_01_lib_intensity_1.mp3: "[demanding] [BETH: 'Faster. Match my rhythm. Show me how desperate that hole is for me.']"
+    male_punishment_01_lib_intensity_2.mp3: "[coldly] [BETH: 'I'm going deeper now. You will accept all of me without complaint.']"
+    male_punishment_01_lib_intensity_3.mp3: "[mocking] [BETH: 'Listen to yourself whimper as I pound that ass. Music to my ears. Keep whimpering for me.']"
+    male_punishment_01_lib_intensity_4.mp3: "[dominant] [BETH: 'Clench down on my cock. Grip me tight with that pathetic boy-pussy.']"
+    male_punishment_01_lib_intensity_5.mp3: "[cruelly] [BETH: 'I'm hitting your prostate on purpose. Does it feel good, slut? Doesn't matter. You take it anyway.']"
+    male_punishment_01_lib_intensity_6.mp3: "[impatiently] [BETH: 'Stop squirming. Hold still and take your punishment like a good little cunt.']"
+    male_punishment_01_lib_intensity_7.mp3: "[possessive] [BETH: 'That's right. My cock fucking your ass. This is your purpose now. Accept it.']"
+
+  ## setup_humiliation:
+    male_punishment_01_lib_setup_humiliation_0.mp3: "[mocking] [BETH: 'Look at this cock I wield. This is what's going to turn you into the pathetic little cunt you truly are tonight.']"
+    male_punishment_01_lib_setup_humiliation_1.mp3: "[smirking] [BETH: 'See this? This means *I* have the cock now, and *you*... you're just the bitch I'm about to fuck with it.']"
+    male_punishment_01_lib_setup_humiliation_2.mp3: "[coldly] [BETH: 'This dildo proves who has the power now. You lost. You're just a hole for my pleasure.']"
+    male_punishment_01_lib_setup_humiliation_3.mp3: "[cruelly] [BETH: 'I'm going to pound your ass so hard with my cock, you'll forget you ever had one of your own.']"
+    male_punishment_01_lib_setup_humiliation_4.mp3: "[possessive] [BETH: 'My cock owns your ass tonight. It goes where I want, as deep as I want, whenever I want.']"
+    male_punishment_01_lib_setup_humiliation_5.mp3: "[teasing] [BETH: 'Dreaming about this, sissy? Being held down and forced to take a cock like a good little girl? Your dream's about to come true.']"
+    male_punishment_01_lib_setup_humiliation_6.mp3: "[satisfied] [BETH: 'Your punishment is going to be my absolute pleasure. Watching you break under my cock... perfect.']"
+    male_punishment_01_lib_setup_humiliation_7.mp3: "[dominant] [BETH: 'Every inch of this going inside you will be a reminder that you are *mine* to use as your Mistress sees fit.']"
 
   ## praise:
     male_punishment_01_lib_praise_0.mp3: "[pleased] [BETH: 'Good boy, taking your punishment so well for me.']"
@@ -1193,24 +1211,33 @@ STORY: male_punishment_01 - The Cunt's Toll
 
   ## toy_use:
     ### on_male_sub:
-      male_punishment_01_lib_toy_use_on_male_sub_0.mp3: "[commanding] [BETH: 'We'll start your training with The Average Size Dick. This is your new reality.']"
-      male_punishment_01_lib_toy_use_on_male_sub_1.mp3: "[commanding] [BETH: 'This is my cock now. Open up and take The Big Cock like the bitch you are.']"
-      male_punishment_01_lib_toy_use_on_male_sub_2.mp3: "[commanding] [BETH: 'I'm going to make you take my fantasy cock. Prepare for The Big Unicorn.']"
-      male_punishment_01_lib_toy_use_on_male_sub_3.mp3: "[commanding] [BETH: 'Let's see how your ass handles a knot. I'm fucking you with The K9.']"
-      male_punishment_01_lib_toy_use_on_male_sub_4.mp3: "[commanding] [BETH: 'Your punishment is to be completely broken. I'm going to wreck your ass with The Monster Dick.']"
-      male_punishment_01_lib_toy_use_on_male_sub_5.mp3: "[commanding] [BETH: 'Your pathetic ass only deserves my smallest cock. You will be fucked by The Tiny Unicorn.']"
-      male_punishment_01_lib_toy_use_on_male_sub_6.mp3: "[commanding] [BETH: 'First, I'm plugging your useless cunt with the Small Purple Butt Plug to get you ready for the real thing.']"
-      male_punishment_01_lib_toy_use_on_male_sub_7.mp3: "[commanding] [BETH: 'My cock isn't enough of a punishment. I'm putting on The Knot Sleeve to really stretch that pathetic boy-cunt of yours.']"
+      male_punishment_01_lib_toy_use_on_male_sub_0.mp3: "[commanding] [BETH: 'Your training in submission begins now. You will take The Average Size Dick.']"
+      male_punishment_01_lib_toy_use_on_male_sub_1.mp3: "[mocking] [BETH: 'This is my cock tonight. And you're the bitch who's going to take The Big Cock up your ass.']"
+      male_punishment_01_lib_toy_use_on_male_sub_2.mp3: "[smirking] [BETH: 'My fantasy requires a sacrifice. Your ass will serve The Big Unicorn.']"
+      male_punishment_01_lib_toy_use_on_male_sub_3.mp3: "[predatory] [BETH: 'Let's see how your tight little hole handles a knot. Prepare yourself for The K9.']"
+      male_punishment_01_lib_toy_use_on_male_sub_4.mp3: "[coldly] [BETH: 'Your punishment demands severity. Tonight, your ass belongs to The Monster Dick.']"
+      male_punishment_01_lib_toy_use_on_male_sub_5.mp3: "[humiliating] [BETH: 'Losing means you don't even deserve a real cock. Your pathetic ass gets fucked by The Tiny Unicorn.']"
+      male_punishment_01_lib_toy_use_on_male_sub_6.mp3: "[cruelly] [BETH: 'This strap-on alone isn't enough for what you deserve. I'm adding The Knot Sleeve. You will feel every ridge stretch that boy-cunt open.']"
 
   ## actionsDomOnSubHandsOnCock:
     male_punishment_01_lib_actionsDomOnSubHandsOnCock_0.mp3: "[NARRATOR: 'Squeeze his balls while you peg him, reminding him who's in control of his pleasure.']"
     male_punishment_01_lib_actionsDomOnSubHandsOnCock_1.mp3: "[NARRATOR: 'Jerk him off with a slow, teasing rhythm as you fuck his ass, keeping him on the edge.']"
-    male_punishment_01_lib_actionsDomOnSubHandsOnCock_2.mp3: "[NARRATOR: 'Put him in chastity before you begin, ensuring his pathetic cock is useless during his punishment.']"
+    male_punishment_01_lib_actionsDomOnSubHandsOnCock_2.mp3: "[NARRATOR: 'Wrap your hand tightly around the base of his cock, trapping the blood and intensifying his helpless arousal.']"
     male_punishment_01_lib_actionsDomOnSubHandsOnCock_3.mp3: "[NARRATOR: 'Force him to stroke his own cock while you fuck him, making him participate in his own feminization.']"
-    male_punishment_01_lib_actionsDomOnSubHandsOnCock_4.mp3: "[NARRATOR: 'Deny him completely, slapping his hand away if he tries to touch himself.']"
+    male_punishment_01_lib_actionsDomOnSubHandsOnCock_4.mp3: "[NARRATOR: 'Deny him completely, slapping his hand away if he tries to touch himself while you pound his ass.']"
     male_punishment_01_lib_actionsDomOnSubHandsOnCock_5.mp3: "[NARRATOR: 'Use a vibrator on the head of his cock, overloading his senses while you pound his ass.']"
-    male_punishment_01_lib_actionsDomOnSubHandsOnCock_6.mp3: "[NARRATOR: 'Just as he's about to cum, stop all stimulation and let him suffer.']"
-    male_punishment_01_lib_actionsDomOnSubHandsOnCock_7.mp3: "[NARRATOR: 'Hold a vibrator against his prostate through his perineum, trying to force an orgasm.']"
+    male_punishment_01_lib_actionsDomOnSubHandsOnCock_6.mp3: "[NARRATOR: 'Just as he's about to cum from your hand, stop all stimulation and let him suffer.']"
+    male_punishment_01_lib_actionsDomOnSubHandsOnCock_7.mp3: "[NARRATOR: 'Hold a vibrator against his prostate through his perineum, trying to force an orgasm while you peg him.']"
+
+  ## humiliation:
+    male_punishment_01_lib_humiliation_0.mp3: "[mocking] [BETH: 'Did my little cunt leak from his ass just now? How utterly pathetic. You don't even cum properly anymore.']"
+    male_punishment_01_lib_humiliation_1.mp3: "[coldly] [BETH: 'All filled up and broken in. Just how I like my toys after I'm done playing with them.']"
+    male_punishment_01_lib_humiliation_2.mp3: "[smirking] [BETH: 'You took my cock beautifully, whimpering and leaking like the good little sissy slut you are.']"
+    male_punishment_01_lib_humiliation_3.mp3: "[dismissive] [BETH: 'See? This is the price for losing. You end up full of my cock, completely used. Lesson learned, I hope?']"
+    male_punishment_01_lib_humiliation_4.mp3: "[satisfied] [BETH: 'I've had my fill of punishing that tight hole. My pleasure is complete. Yours never even mattered.']"
+    male_punishment_01_lib_humiliation_5.mp3: "[cruelly] [BETH: 'Look at you... wrecked and stretched out by my cock. Don't worry, it'll feel even better next time I decide to use you.']"
+    male_punishment_01_lib_humiliation_6.mp3: "[dominant] [BETH: 'Remember this feeling of being utterly used. This is your place now, beneath me, taking my cock.']"
+    male_punishment_01_lib_humiliation_7.mp3: "[objectifying] [BETH: 'The debt is paid. This hole has served its purpose. Time to empty you out.']"
 
   ## kinkActions:
     ### for_him:
@@ -1225,17 +1252,23 @@ STORY: male_punishment_01 - The Cunt's Toll
 
   ## aftercare:
     ### physical:
-      male_punishment_01_lib_aftercare_physical_0.mp3: "[NARRATOR: 'Gently kiss the areas that were subjected to pain.']"
-      male_punishment_01_lib_aftercare_physical_1.mp3: "[NARRATOR: 'Hold them close and stroke their hair.']"
-      male_punishment_01_lib_aftercare_physical_2.mp3: "[NARRATOR: 'Wrap them in a warm blanket.']"
-      male_punishment_01_lib_aftercare_physical_3.mp3: "[NARRATOR: 'Give them a gentle, loving massage.']"
-      male_punishment_01_lib_aftercare_physical_4.mp3: "[NARRATOR: 'Get them a glass of water.']"
+      male_punishment_01_lib_aftercare_physical_0.mp3: "[NARRATOR: 'She carefully removes the strap-on dildo and sets it aside, her movements now gentle.']"
+      male_punishment_01_lib_aftercare_physical_1.mp3: "[NARRATOR: 'She gently helps you up from your position, guiding you into a comfortable cuddle beside her.']"
+      male_punishment_01_lib_aftercare_physical_2.mp3: "[NARRATOR: 'She pulls you into a close, warm embrace, holding you tightly and securely.']"
+      male_punishment_01_lib_aftercare_physical_3.mp3: "[NARRATOR: 'She softly kisses your forehead and cheeks, her touch filled only with affection.']"
+      male_punishment_01_lib_aftercare_physical_4.mp3: "[NARRATOR: 'She gets you a cool glass of water and holds it for you if needed.']"
+      male_punishment_01_lib_aftercare_physical_5.mp3: "[NARRATOR: 'She gently rubs your lower back and asks softly if your ass feels okay or needs anything.']"
+      male_punishment_01_lib_aftercare_physical_6.mp3: "[NARRATOR: 'She holds your face tenderly in her hands, looking into your eyes with warmth and love.']"
+      male_punishment_01_lib_aftercare_physical_7.mp3: "[NARRATOR: 'She wraps a warm blanket around both of you, focusing on closeness and comfort.']"
     ### verbal:
-      male_punishment_01_lib_aftercare_verbal_0.mp3: "[sincere] [NARRATOR: 'You were so incredible. Thank you for trusting me.']"
-      male_punishment_01_lib_aftercare_verbal_1.mp3: "[sincere] [NARRATOR: 'Tell me how you're feeling. I'm right here with you.']"
-      male_punishment_01_lib_aftercare_verbal_2.mp3: "[sincere] [NARRATOR: 'You did such a good job. I'm so proud of you.']"
-      male_punishment_01_lib_aftercare_verbal_3.mp3: "[sincere] [NARRATOR: 'I love you. You are safe with me.']"
-      male_punishment_01_lib_aftercare_verbal_4.mp3: "[sincere] [NARRATOR: 'That was intense. You took it so perfectly.']"
+      male_punishment_01_lib_aftercare_verbal_0.mp3: "[softly] [BETH: 'Okay baby, scene's over. Come here, let me hold my husband.']"
+      male_punishment_01_lib_aftercare_verbal_1.mp3: "[sincerely] [BETH: 'You took my cock so incredibly well. Thank you for trusting me with that, it was so hot watching you take it for me.']"
+      male_punishment_01_lib_aftercare_verbal_2.mp3: "[reassuringly] [BETH: 'You know that was just our game, right? You're my strong, amazing man, always. Letting me do that doesn't change a thing.']"
+      male_punishment_01_lib_aftercare_verbal_3.mp3: "[lovingly] [BETH: 'I love you more than anything. Are you okay right now? Tell me honestly how you're feeling.']"
+      male_punishment_01_lib_aftercare_verbal_4.mp3: "[gently] [BETH: 'Does your ass hurt at all? Be honest. Let me know if you need anything, okay?']"
+      male_punishment_01_lib_aftercare_verbal_5.mp3: "[impressed] [BETH: 'Seriously, you were amazing taking that punishment. I'm so proud of how much you trust me.']"
+      male_punishment_01_lib_aftercare_verbal_6.mp3: "[warmly] [BETH: 'Let's just cuddle now. No roles, just us being close.']"
+      male_punishment_01_lib_aftercare_verbal_7.mp3: "[admiringly] [BETH: 'Seeing you submit like that, trusting me completely... it's incredibly intimate and makes me love you even more.']"
 
 
 
@@ -1676,7 +1709,7 @@ STORY: female_punishment_01 - The Cum-Dump's Duty
 
   ## act1Setup:
     female_punishment_01_act1Setup_0_NARRATOR.mp3: "Beth lost. Her punishment is to serve a single, degrading purpose. You are 'The User,' she is 'The Object.' Your tone is cold, your words are simple commands."
-    female_punishment_01_act1Setup_2_JOSH.mp3: "You lost. On your knees."
+    female_punishment_01_act1Setup_2_JOSH.mp3: "You lost. Now you submit. Prepare for punishment."
     female_punishment_01_act1Setup_4_NARRATOR.mp3: "Once she is in position, you deliver the core of her punishment."
     female_punishment_01_act1Setup_7_NARRATOR.mp3: "Her feelings are irrelevant."
 
@@ -1703,15 +1736,15 @@ STORY: female_punishment_01 - The Cum-Dump's Duty
 
 --- Command Library ---
 
-  ## instruction:
-    female_punishment_01_lib_instruction_0.mp3: "[coldly] [JOSH: 'You have one purpose. Fulfill it.']"
-    female_punishment_01_lib_instruction_1.mp3: "[coldly] [JOSH: 'Don't think. Just serve. Open your mouth.']"
-    female_punishment_01_lib_instruction_2.mp3: "[coldly] [JOSH: 'Your pleasure is not on the agenda. Only my release matters.']"
-    female_punishment_01_lib_instruction_3.mp3: "[coldly] [JOSH: 'Take my cum. That is your only job tonight.']"
-    female_punishment_01_lib_instruction_4.mp3: "[coldly] [JOSH: 'You are a tool to be used. Act like it.']"
-    female_punishment_01_lib_instruction_5.mp3: "[coldly] [JOSH: 'On your knees, cunt. It''s time to pay for losing.']"
-    female_punishment_01_lib_instruction_6.mp3: "[coldly] [JOSH: 'You will swallow every drop. Nothing is to be wasted.']"
-    female_punishment_01_lib_instruction_7.mp3: "[coldly] [JOSH: 'Look me in the eye while you do it. I want to see your shame.']"
+  ## positioning:
+    female_punishment_01_lib_positioning_0.mp3: "[coldly] [JOSH: 'Knees wide. Hands behind your back. Present that mouth.']"
+    female_punishment_01_lib_positioning_1.mp3: "[coldly] [JOSH: 'Face down, ass up. Turn your head and open your mouth for me.']"
+    female_punishment_01_lib_positioning_2.mp3: "[coldly] [JOSH: 'Lie on your back. Legs spread. Head tilted back, mouth open like the receptacle you are.']"
+    female_punishment_01_lib_positioning_3.mp3: "[coldly] [JOSH: 'Against the wall. Hands flat against it. Turn your head towards me and open wide.']"
+    female_punishment_01_lib_positioning_4.mp3: "[coldly] [JOSH: 'Kneel, but sit back on your heels. Crawl closer. Mouth ready.']"
+    female_punishment_01_lib_positioning_5.mp3: "[coldly] [JOSH: 'Get on all fours facing away from me. Now look back over your shoulder, mouth open and waiting.']"
+    female_punishment_01_lib_positioning_6.mp3: "[coldly] [JOSH: 'Lie on your side facing me. Curl up slightly. Open that worthless mouth.']"
+    female_punishment_01_lib_positioning_7.mp3: "[coldly] [JOSH: 'Just kneel there. Head bowed slightly. Eyes closed. Mouth open. Wait for it.']"
 
   ## humiliation:
     female_punishment_01_lib_humiliation_0.mp3: "[flatly] [JOSH: 'You are a hole. Nothing more. A warm place to dump my load.']"
@@ -1742,6 +1775,16 @@ STORY: female_punishment_01 - The Cum-Dump's Duty
     female_punishment_01_lib_actionsSubOnDomMouthOnCock_5.mp3: "[NARRATOR: 'Use one hand to hold your hair back, the other on his leg for stability, like a professional.']"
     female_punishment_01_lib_actionsSubOnDomMouthOnCock_6.mp3: "[NARRATOR: 'Swallow, then look up at him, awaiting your next command.']"
     female_punishment_01_lib_actionsSubOnDomMouthOnCock_7.mp3: "[NARRATOR: 'Gag on his cock deliberately, showing him how much you're taking for him.']"
+
+  ## climax_instruction:
+    female_punishment_01_lib_climax_instruction_0.mp3: "[coldly] [JOSH: 'Mouth. Open it wider. You will take my load down your throat.']"
+    female_punishment_01_lib_climax_instruction_1.mp3: "[flatly] [JOSH: 'Present that cunt. Spread your legs. It serves its purpose now.']"
+    female_punishment_01_lib_climax_instruction_2.mp3: "[commanding] [JOSH: 'Roll over. Ass up. I will use your back hole for my release.']"
+    female_punishment_01_lib_climax_instruction_3.mp3: "[objectifying] [JOSH: 'Whichever hole I choose, you will take it without hesitation. Understand?']"
+    female_punishment_01_lib_climax_instruction_4.mp3: "[deadpan] [JOSH: 'Throat. Relax it completely. Do not gag on my release.']"
+    female_punishment_01_lib_climax_instruction_5.mp3: "[coldly] [JOSH: 'Prepare your cunt. I require a wet, usable hole immediately.']"
+    female_punishment_01_lib_climax_instruction_6.mp3: "[flatly] [JOSH: 'Your tight little asshole seems fitting for this punishment. Assume the position.']"
+    female_punishment_01_lib_climax_instruction_7.mp3: "[commanding] [JOSH: 'Hold still. It doesn't matter which hole. Your only job is to receive my cum.']"
 
   ## actionsDomOnSubHandsOnPussy:
     female_punishment_01_lib_actionsDomOnSubHandsOnPussy_0.mp3: "[NARRATOR: 'Plunge two fingers deep inside her cunt and finger-fuck her, not for her pleasure, but to make her wet for you.']"

@@ -9,7 +9,8 @@ enum class Screen {
     REWARD_PUNISHMENT_CHOICE,
     STORY_SELECTION,
     STORY_SCREEN,
-    STORY_PLAYER // New screen for the act player
+    STORY_PLAYER, // New screen for the act player
+    COMMAND_CURATION
 }
 
 // To manage the app's visual theme
@@ -61,7 +62,14 @@ data class CommandLibrary(
     val actionsSubOnDomMouthOnCock: List<StoryCommand>? = null,
     val subToDomWorship: List<StoryCommand>? = null,
     val kinkActions: Map<String, List<StoryCommand>>? = null,
-    val aftercare: Map<String, List<StoryCommand>>? = null
+    val aftercare: Map<String, List<StoryCommand>>? = null,
+    val position: List<StoryCommand>? = null,
+    val intensity: List<StoryCommand>? = null,
+    val setup_humiliation: List<StoryCommand>? = null,
+    val instruction_climax: List<StoryCommand>? = null,
+    val positioning: List<StoryCommand>? = null,
+    val climax_instruction: List<StoryCommand>? = null,
+    val instruction_force_position: List<StoryCommand>? = null
 )
 
 @Serializable
