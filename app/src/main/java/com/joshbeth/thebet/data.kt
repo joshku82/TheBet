@@ -10,7 +10,8 @@ enum class Screen {
     STORY_SELECTION,
     STORY_SCREEN,
     STORY_PLAYER, // New screen for the act player
-    COMMAND_CURATION
+    COMMAND_CURATION,
+    STORY_COMPLETE_TRANSITION
 }
 
 // To manage the app's visual theme
@@ -29,7 +30,8 @@ data class StoryUiState(
     val chosenPath: String? = null, // "Reward" or "Punishment"
     val selectedStory: StoryScript? = null,
     val drawnCommands: Map<Int, StoryCommand?> = emptyMap(),
-    val actToPlay: List<StoryStep>? = null // The act currently being played
+    val actToPlay: List<StoryStep>? = null, // The act currently being played
+    val postTransitionScreen: Screen? = null // The screen to go to after a transition
 )
 
 @Serializable
@@ -66,10 +68,11 @@ data class CommandLibrary(
     val position: List<StoryCommand>? = null,
     val intensity: List<StoryCommand>? = null,
     val setup_humiliation: List<StoryCommand>? = null,
-    val instruction_climax: List<StoryCommand>? = null,
     val positioning: List<StoryCommand>? = null,
     val climax_instruction: List<StoryCommand>? = null,
-    val instruction_force_position: List<StoryCommand>? = null
+    val instruction_force_position: List<StoryCommand>? = null,
+    val postCum: List<StoryCommand>? = null,
+    val instruction_climax: List<StoryCommand>? = null
 )
 
 @Serializable

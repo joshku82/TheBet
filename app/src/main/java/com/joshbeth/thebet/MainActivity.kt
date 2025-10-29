@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,10 +29,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -52,7 +56,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -60,9 +66,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.joshbeth.thebet.ui.theme.TheBetTheme
-import com.joshbeth.thebet.ui.theme.DeepBlack
 import com.joshbeth.thebet.ui.theme.CrimsonRed
+import com.joshbeth.thebet.ui.theme.DeepBlack
 import com.joshbeth.thebet.ui.theme.DeepTeal
 import com.joshbeth.thebet.ui.theme.DialogueGreen
 import com.joshbeth.thebet.ui.theme.DominantBlue
@@ -70,16 +75,15 @@ import com.joshbeth.thebet.ui.theme.NeutralGrayDark
 import com.joshbeth.thebet.ui.theme.NeutralGrayMedium
 import com.joshbeth.thebet.ui.theme.SexyPeach
 import com.joshbeth.thebet.ui.theme.SexyPink
+import com.joshbeth.thebet.ui.theme.TheBetTheme
 import java.io.IOException
+import java.security.MessageDigest
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 
 // =============================================================== //
 // VIEWMODEL
@@ -146,8 +150,9 @@ class StoryViewModel : ViewModel() {
             _uiState.update {
                 it.copy(
                     selectedStory = story,
-                    currentScreen = Screen.STORY_SCREEN,
-                    drawnCommands = drawnCommands
+                    drawnCommands = drawnCommands,
+                    currentScreen = Screen.STORY_COMPLETE_TRANSITION, // Go to transition first
+                    postTransitionScreen = Screen.STORY_SCREEN // Then go to the story screen
                 )
             }
         }
@@ -166,18 +171,48 @@ class StoryViewModel : ViewModel() {
         _uiState.update {
             it.copy(
                 selectedStory = story,
-                currentScreen = Screen.COMMAND_CURATION
+                currentScreen = Screen.STORY_COMPLETE_TRANSITION, // Go to transition first
+                postTransitionScreen = Screen.COMMAND_CURATION // Then go to the curation screen
             )
         }
     }
 
     fun finishAct() {
-        _uiState.update {
-            it.copy(
-                actToPlay = null,
-                currentScreen = Screen.STORY_SCREEN
-            )
+        val uiState = _uiState.value
+        val story = uiState.selectedStory ?: return
+        val actJustPlayed = uiState.actToPlay ?: return
+
+        // Determine if the act that just finished was the last one.
+        val lastAct = story.aftercareScript?.takeIf { it.isNotEmpty() } ?: story.act3Aftermath
+
+        val isStoryComplete = actJustPlayed == lastAct
+
+        if (isStoryComplete) {
+            // If the story is complete, go to the transition screen.
+            _uiState.update {
+                it.copy(
+                    actToPlay = null,
+                    currentScreen = Screen.STORY_COMPLETE_TRANSITION,
+                    postTransitionScreen = Screen.STORY_SELECTION // After story is done, go back to selection
+                )
+            }
+        } else {
+            // If it's not the last act, return to the story overview screen.
+            _uiState.update {
+                it.copy(
+                    actToPlay = null,
+                    currentScreen = Screen.STORY_SCREEN
+                )
+            }
         }
+    }
+
+    fun transitionFinished() {
+        val nextScreen = _uiState.value.postTransitionScreen ?: Screen.STORY_SELECTION // Fallback
+        _uiState.update { it.copy(
+            currentScreen = nextScreen,
+            postTransitionScreen = null // Reset for next time
+        ) }
     }
 }
 
@@ -210,6 +245,108 @@ class MainActivity : ComponentActivity() {
 // =============================================================== //
 
 @Composable
+fun StoryCompleteTransitionScreen(story: StoryScript, onTransitionFinish: () -> Unit) {
+    val context = LocalContext.current
+    val resourceName = "transition_${story.id.lowercase()}"
+    val resourceId = remember(resourceName) {
+        context.resources.getIdentifier(resourceName, "drawable", context.packageName)
+    }
+
+    val imageAlpha = remember { Animatable(0f) }
+    val textAlpha = remember { Animatable(0f) }
+
+    if (resourceId != 0) {
+        // If the specific transition image exists, show it with a fade animation
+        LaunchedEffect(Unit) {
+            // --- FADE IN ---
+            launch { imageAlpha.animateTo(1f, tween(2000)) } // Image fades in over 2s
+            launch {
+                delay(1000) // Wait 1s before text fades in
+                textAlpha.animateTo(1f, tween(3000)) // Text fades in over 3s
+            }
+            delay(4000) // Wait for the longest fade-in to complete (1s delay + 3s anim)
+
+            // --- FADE OUT ---
+            launch { textAlpha.animateTo(0f, tween(3000)) } // Text fades out over 3s
+            launch {
+                delay(500) // Wait 0.5s before image fades out
+                imageAlpha.animateTo(0f, tween(2000)) // Image fades out over 2s
+            }
+            delay(3000) // Wait for the longest fade-out to complete
+
+            onTransitionFinish()
+        }
+
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = resourceId),
+                contentDescription = "Story Transition Background for ${story.title}",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .alpha(imageAlpha.value),
+                contentScale = ContentScale.Crop
+            )
+
+            // Container for text and its scrim, to be faded together
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .alpha(textAlpha.value)) {
+                // Scrim for text readability
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            Brush.verticalGradient(
+                                colors = listOf(Color.Black.copy(alpha = 0.7f), Color.Transparent),
+                                startY = 0f,
+                                endY = 500f
+                            )
+                        )
+                )
+                Text(
+                    text = story.title,
+                    style = MaterialTheme.typography.headlineLarge.copy(
+                        shadow = Shadow(
+                            color = Color.Black,
+                            blurRadius = 16f
+                        )
+                    ),
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .fillMaxWidth()
+                        .padding(top = 48.dp, start = 16.dp, end = 16.dp)
+                )
+            }
+        }
+    } else {
+        // If no image is found, skip the transition immediately
+        LaunchedEffect(Unit) {
+            onTransitionFinish()
+        }
+    }
+}
+
+
+@Composable
+fun ImageBackground(content: @Composable () -> Unit) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.background_image),
+            contentDescription = "Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        // Add a scrim for better text readability
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.4f)))
+        content()
+    }
+}
+
+@Composable
 fun GradientBox(theme: ThemeSelection, content: @Composable () -> Unit) {
     val gradientColors = when (theme) {
         ThemeSelection.PUNISHMENT -> listOf(DeepBlack, CrimsonRed.copy(alpha = 0.3f))
@@ -232,7 +369,8 @@ fun GradientBox(theme: ThemeSelection, content: @Composable () -> Unit) {
 fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
-    GradientBox(theme = uiState.theme) {
+    // This is the composable that contains the screen logic
+    val screenContent = @Composable {
         when (uiState.currentScreen) {
             Screen.PLAYER_DESIGNATION -> PlayerDesignationScreen(onConfirm = { winner, loser ->
                 viewModel.setPlayerNames(winner, loser)
@@ -249,9 +387,35 @@ fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
                 onCurationSelected = { story -> viewModel.startCuration(story) },
                 onBack = { viewModel.goBackToStart() }
             )
-            Screen.STORY_SCREEN -> StoryScreen(uiState = uiState, onPlayAct = { act -> viewModel.playAct(act) }, onBack = { viewModel.goBackToStart() })
-            Screen.STORY_PLAYER -> StoryPlayerScreen(uiState = uiState, onFinish = { viewModel.finishAct() })
-            Screen.COMMAND_CURATION -> CommandCurationScreen(uiState = uiState, onConfirm = { story, commands -> viewModel.startStory(story, commands) }, onBack = { viewModel.goBackToStart() })
+            Screen.STORY_SCREEN -> StoryScreen(
+                uiState = uiState,
+                onPlayAct = { act -> viewModel.playAct(act) },
+                onBack = { viewModel.goBackToStart() })
+            Screen.STORY_PLAYER -> StoryPlayerScreen(
+                uiState = uiState,
+                onFinish = { viewModel.finishAct() })
+            Screen.COMMAND_CURATION -> CommandCurationScreen(
+                uiState = uiState,
+                onConfirm = { story, commands -> viewModel.startStory(story, commands) },
+                onBack = { viewModel.goBackToStart() })
+            Screen.STORY_COMPLETE_TRANSITION -> {
+                uiState.selectedStory?.let { story ->
+                    StoryCompleteTransitionScreen(
+                        story = story,
+                        onTransitionFinish = { viewModel.transitionFinished() })
+                }
+            }
+        }
+    }
+
+    // Now, apply the background based on the screen
+    if (uiState.currentScreen == Screen.PLAYER_DESIGNATION || uiState.currentScreen == Screen.REWARD_PUNISHMENT_CHOICE) {
+        ImageBackground {
+            screenContent() // Call the composable lambda
+        }
+    } else {
+        GradientBox(theme = uiState.theme) {
+            screenContent() // Call the composable lambda
         }
     }
 }
@@ -259,16 +423,20 @@ fun StoryApp(modifier: Modifier = Modifier, viewModel: StoryViewModel) {
 @Composable
 fun PlayerDesignationScreen(onConfirm: (String, String) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Who Won The Bet?", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onBackground)
+        Text("Who Won The Bet?", style = MaterialTheme.typography.headlineLarge, color = Color.White)
         Spacer(modifier = Modifier.height(32.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Button(
                 onClick = { onConfirm("Josh", "Beth") },
-                modifier = Modifier.weight(1f).height(50.dp),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -276,7 +444,9 @@ fun PlayerDesignationScreen(onConfirm: (String, String) -> Unit) {
             }
             Button(
                 onClick = { onConfirm("Beth", "Josh") },
-                modifier = Modifier.weight(1f).height(50.dp),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -289,13 +459,15 @@ fun PlayerDesignationScreen(onConfirm: (String, String) -> Unit) {
 @Composable
 fun RewardPunishmentChoiceScreen(winnerName: String, onChoiceSelected: (String) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Congratulations, $winnerName!", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.onBackground, textAlign = TextAlign.Center)
+        Text(text = "Congratulations, $winnerName!", style = MaterialTheme.typography.headlineLarge, color = Color.White, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "What is your desire?", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurface)
+        Text(text = "What is your desire?", style = MaterialTheme.typography.titleLarge, color = Color.White.copy(alpha = 0.8f))
         Spacer(modifier = Modifier.height(32.dp))
         Row {
             Button(
@@ -404,7 +576,19 @@ fun StorySelectionScreen(
                                 val conceptText = story.concept
                                     .replace("{winner}", winnerName, ignoreCase = true)
                                     .replace("{loser}", loserName, ignoreCase = true)
-                                Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(text = story.title, style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+                                    if (story.id == "female_reward_01_audio_ref") {
+                                        Spacer(Modifier.width(8.dp))
+                                        Icon(
+                                            imageVector = Icons.Filled.Star,
+                                            contentDescription = "Complete Story",
+                                            tint = MaterialTheme.colorScheme.secondary,
+                                            modifier = Modifier.size(20.dp)
+                                        )
+                                    }
+                                }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(text = conceptText, style = MaterialTheme.typography.bodyMedium)
                             }
@@ -431,7 +615,9 @@ fun StorySelectionScreen(
 
         Button(
             onClick = onBack,
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(12.dp)
         ) {
@@ -450,7 +636,9 @@ fun CommandCurationScreen(uiState: StoryUiState, onConfirm: (StoryScript, Map<In
 
     var selectedCommands by remember { mutableStateOf<Map<Int, StoryCommand>>(emptyMap()) }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Text(
             text = "Curate Commands",
             style = MaterialTheme.typography.headlineLarge,
@@ -692,7 +880,9 @@ fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onB
 
         Button(
             onClick = onBack,
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(12.dp)
         ) {
@@ -701,107 +891,10 @@ fun StoryScreen(uiState: StoryUiState, onPlayAct: (List<StoryStep>) -> Unit, onB
     }
 }
 
-// =============================================================== //
-// AUDIO HELPERS
-// =============================================================== //
-
-fun assetExists(context: Context, path: String): Boolean {
-    return try {
-        context.assets.open(path).close()
-        true
-    } catch (e: IOException) {
-        false
-    }
+private fun String.toSha256(): String {
+    val bytes = MessageDigest.getInstance("SHA-256").digest(this.toByteArray())
+    return bytes.joinToString("") { "%02x".format(it) }
 }
-
-fun findCommandAudioFilename(storyId: String, command: StoryCommand, library: CommandLibrary): String? {
-    // Check simple lists
-    library.instruction?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_instruction_${index}.mp3"
-    }
-    library.instructiona?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_instructiona_${index}.mp3"
-    }
-    library.instruction_climax?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_instruction_climax_${index}.mp3"
-    }
-    library.humiliation?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_humiliation_${index}.mp3"
-    }
-    library.praise?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_praise_${index}.mp3"
-    }
-    library.actionsDomOnSubHandsOnBody?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnBody_${index}.mp3"
-    }
-    library.actionsDomOnSubHandsOnPussy?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnPussy_${index}.mp3"
-    }
-    library.actionsDomOnSubHandsOnCock?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_actionsDomOnSubHandsOnCock_${index}.mp3"
-    }
-    library.actionsSubOnDomMouthOnPussy?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_actionsSubOnDomMouthOnPussy_${index}.mp3"
-    }
-    library.actionsSubOnDomMouthOnCock?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_actionsSubOnDomMouthOnCock_${index}.mp3"
-    }
-    library.subToDomWorship?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_subToDomWorship_${index}.mp3"
-    }
-    library.position?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_position_${index}.mp3"
-    }
-    library.intensity?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_intensity_${index}.mp3"
-    }
-    library.setup_humiliation?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_setup_humiliation_${index}.mp3"
-    }
-    library.positioning?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_positioning_${index}.mp3"
-    }
-    library.climax_instruction?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_climax_instruction_${index}.mp3"
-    }
-    library.instruction_force_position?.let { list ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_instruction_force_position_${index}.mp3"
-    }
-
-    // Check map-based lists
-    library.toy_use?.forEach { (subKey, list) ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_toy_use_${subKey.replace(" ", "_")}_${index}.mp3"
-    }
-    library.kinkActions?.forEach { (subKey, list) ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_kinkActions_${subKey.replace(" ", "_")}_${index}.mp3"
-    }
-    library.aftercare?.forEach { (subKey, list) ->
-        val index = list.indexOf(command)
-        if (index != -1) return "${storyId}_lib_aftercare_${subKey.replace(" ", "_")}_${index}.mp3"
-    }
-
-    return null // Command not found
-}
-
 
 @Composable
 fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
@@ -831,32 +924,18 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
 
         val step = playableSteps[index]
 
-        // Construct the filename
-        val audioFileName: String? = when (step) {
-            is DialogueLine -> {
-                val actName = when (act) {
-                    story.act1Setup -> "act1Setup"
-                    story.act2Core -> "act2Core"
-                    story.act3Aftermath -> "act3Aftermath"
-                    story.aftercareScript -> "aftercareScript"
-                    else -> "unknownAct"
-                }
-                val speaker = step.speaker.replace(" ", "_")
-                val localStepIndex = act.indexOf(step)
-                "${story.id}_${actName}_${localStepIndex}_$speaker.mp3"
-            }
+        val textToHash: String? = when (step) {
+            is DialogueLine -> step.text
             is DrawCommand -> {
                 val stepIndexInStory = allSteps.indexOf(step)
-                val command = uiState.drawnCommands[stepIndexInStory]
-                if (command != null) {
-                    findCommandAudioFilename(story.id, command, story.commandLibrary)
-                } else null
+                uiState.drawnCommands[stepIndexInStory]?.text
             }
             else -> null
         }
 
-        val assetPath = if (audioFileName != null) "audio/$audioFileName" else null
-        if (assetPath != null && assetExists(context, assetPath)) {
+        if (textToHash != null) {
+            val audioFileName = "${textToHash.toSha256()}.mp3"
+            val assetPath = "audio/$audioFileName"
             try {
                 val afd = context.assets.openFd(assetPath)
                 val mp = MediaPlayer().apply {
@@ -868,6 +947,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
                 mediaPlayer = mp
                 afd.close()
             } catch (e: Exception) {
+                // File not found or other error, proceed without audio
                 mediaPlayer = null
             }
         }
@@ -879,23 +959,7 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
         while (currentLineIndex.value.toInt() < playableSteps.size) {
             alpha.animateTo(1f, animationSpec = tween(1000))
 
-            val step = playableSteps[currentLineIndex.value.toInt()]
-            val displayTime = when (step) {
-                is DialogueLine -> (step.text.split(" ").size * 300L).coerceAtLeast(2000L)
-                is DrawCommand -> {
-                    val stepIndexInStory = allSteps.indexOf(step)
-                    val command = uiState.drawnCommands[stepIndexInStory]
-                    val rawText = command?.text ?: ""
-                    val lastBracketContent = rawText.substringAfterLast('[', "").substringBeforeLast(']', "")
-                    val dialogue = if (lastBracketContent.contains(':')) {
-                        lastBracketContent.split(":", limit = 2)[1].trim().removeSurrounding("'")
-                    } else {
-                        rawText.trim('[', ']')
-                    }
-                    (dialogue.split(" ").size * 300L).coerceAtLeast(2000L)
-                }
-                else -> 2000L
-            }
+            val displayTime = mediaPlayer?.duration?.toLong() ?: 3000L
             delay(displayTime)
 
             alpha.animateTo(0f, animationSpec = tween(1000))
@@ -914,7 +978,10 @@ fun StoryPlayerScreen(uiState: StoryUiState, onFinish: () -> Unit) {
     }
 
     Box(
-        modifier = Modifier.fillMaxSize().padding(16.dp).clickable { onFinish() },
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .clickable { onFinish() },
         contentAlignment = Alignment.Center
     ) {
         if (currentLineIndex.value.toInt() >= playableSteps.size) return@Box
